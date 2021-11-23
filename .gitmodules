@@ -27,3 +27,8 @@
 	path = OCA/web
 	url = git@github.com:OCA/web.git
 	branch = 14.0
+
+[submodule "shopinvader/pattern-import-export"]
+	path = shopinvader/pattern-import-export
+	url = git@github.com:shopinvader/pattern-import-export.git
+	branch = 14.0
