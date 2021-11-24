@@ -42,3 +42,8 @@
 	path = OCA/l10n-france
 	url = git@github.com:OCA/l10n-france.git
 	branch = 14.0
+
+[submodule "OCA/community-data-files"]
+	path = OCA/community-data-files
+	url = git@github.com:OCA/community-data-files.git
+	branch = 14.0
