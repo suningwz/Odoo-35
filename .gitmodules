@@ -72,3 +72,8 @@
 	path = OCA/rest-framework
 	url = git@github.com:OCA/rest-framework.git
 	branch = 14.0
+
+[submodule "OCA/delivery-carrier"]
+	path = OCA/delivery-carrier
+	url = git@github.com:OCA/delivery-carrier.git
+	branch = 14.0
