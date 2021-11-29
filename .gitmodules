@@ -87,3 +87,8 @@
 	path = OCA/connector
 	url = git@github.com:OCA/connector.git
 	branch = 14.0
+
+[submodule "OCA/report-print-send"]
+	path = OCA/report-print-send
+	url = git@github.com:OCA/report-print-send.git
+	branch = 14.0
