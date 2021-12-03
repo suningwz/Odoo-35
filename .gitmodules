@@ -92,6 +92,3 @@
 	path = OCA/report-print-send
 	url = git@github.com:OCA/report-print-send.git
 	branch = 14.0
-[submodule "OCA/e-commerce"]
-	path = OCA/e-commerce
-	url = /home/vincent/git/Revivre/Odoo/OCA/e-commerce/
