@@ -1,94 +1,94 @@
 [submodule "OCA/manufacture"]
 	path = OCA/manufacture
-	url = git@github.com:OCA/manufacture.git
+	url = https://github.com/OCA/manufacture.git
 	branch = 14.0
 
 [submodule "OCA/server-ux"]
 	path = OCA/server-ux
-	url = git@github.com:OCA/server-ux.git
+	url = https://github.com/OCA/server-ux.git
 	branch = 14.0
 
 [submodule "OCA/server-tools"]
 	path = OCA/server-tools
-	url = git@github.com:OCA/server-tools.git
+	url = https://github.com/OCA/server-tools.git
 	branch = 14.0
 
 [submodule "OCA/stock-logistics-warehouse"]
 	path = OCA/stock-logistics-warehouse
-	url = git@github.com:OCA/stock-logistics-warehouse.git
+	url = https://github.com/OCA/stock-logistics-warehouse.git
 	branch = 14.0
 
 [submodule "OCA/ddmrp"]
 	path = OCA/ddmrp
-	url = git@github.com:OCA/ddmrp.git
+	url = https://github.com/OCA/ddmrp.git
 	branch = 14.0
 
 [submodule "OCA/web"]
 	path = OCA/web
-	url = git@github.com:OCA/web.git
+	url = https://github.com/OCA/web.git
 	branch = 14.0
 
 [submodule "shopinvader/pattern-import-export"]
 	path = shopinvader/pattern-import-export
-	url = git@github.com:shopinvader/pattern-import-export.git
+	url = https://github.com/shopinvader/pattern-import-export.git
 	branch = 14.0
 
 [submodule "OCA/queue"]
 	path = OCA/queue
-	url = git@github.com:OCA/queue.git
+	url = https://github.com/OCA/queue.git
 	branch = 14.0
 
 [submodule "OCA/l10n-france"]
 	path = OCA/l10n-france
-	url = git@github.com:OCA/l10n-france.git
+	url = https://github.com/OCA/l10n-france.git
 	branch = 14.0
 
 [submodule "OCA/community-data-files"]
 	path = OCA/community-data-files
-	url = git@github.com:OCA/community-data-files.git
+	url = https://github.com/OCA/community-data-files.git
 	branch = 14.0
 
 [submodule "OCA/purchase-workflow"]
 	path = OCA/purchase-workflow
-	url = git@github.com:OCA/purchase-workflow.git
+	url = https://github.com/OCA/purchase-workflow.git
 	branch = 14.0
 
 [submodule "OCA/product-attribute"]
 	path = OCA/product-attribute
-	url = git@github.com:OCA/product-attribute.git
+	url = https://github.com/OCA/product-attribute.git
 	branch = 14.0
 
 [submodule "OCA/stock-logistics-workflow"]
 	path = OCA/stock-logistics-workflow
-	url = git@github.com:OCA/stock-logistics-workflow.git
+	url = https://github.com/OCA/stock-logistics-workflow.git
 	branch = 14.0
 
 [submodule "OCA/wms"]
 	path = OCA/wms
-	url = git@github.com:OCA/wms.git
+	url = https://github.com/OCA/wms.git
 	branch = 14.0
 
 [submodule "OCA/rest-framework"]
 	path = OCA/rest-framework
-	url = git@github.com:OCA/rest-framework.git
+	url = https://github.com/OCA/rest-framework.git
 	branch = 14.0
 
 [submodule "OCA/delivery-carrier"]
 	path = OCA/delivery-carrier
-	url = git@github.com:OCA/delivery-carrier.git
+	url = https://github.com/OCA/delivery-carrier.git
 	branch = 14.0
 
 [submodule "OCA/server-auth"]
 	path = OCA/server-auth
-	url = git@github.com:OCA/server-auth.git
+	url = https://github.com/OCA/server-auth.git
 	branch = 14.0
 
 [submodule "OCA/connector"]
 	path = OCA/connector
-	url = git@github.com:OCA/connector.git
+	url = https://github.com/OCA/connector.git
 	branch = 14.0
 
 [submodule "OCA/report-print-send"]
 	path = OCA/report-print-send
-	url = git@github.com:OCA/report-print-send.git
+	url = https://github.com/OCA/report-print-send.git
 	branch = 14.0
