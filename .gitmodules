@@ -102,3 +102,8 @@
 	path = OCA/partner-contact
 	url = git@github.com:OCA/partner-contact.git
 	branch = 14.0
+
+[submodule "OCA/data-protection"]
+	path = OCA/data-protection
+	url = git@github.com:OCA/data-protection.git
+	branch = 14.0
