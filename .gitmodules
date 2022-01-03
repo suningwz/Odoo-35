@@ -97,3 +97,8 @@
 	path = OCA/e-commerce
 	url = https://github.com/OCA/e-commerce.git
 	branch = 14.0
+
+[submodule "OCA/partner-contact"]
+	path = OCA/partner-contact
+	url = git@github.com:OCA/partner-contact.git
+	branch = 14.0
