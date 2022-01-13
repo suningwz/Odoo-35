@@ -107,3 +107,8 @@
 	path = OCA/data-protection
 	url = git@github.com:OCA/data-protection.git
 	branch = 14.0
+
+[submodule "OCA/sale-workflow"]
+	path = OCA/sale-workflow
+	url = git@github.com:OCA/sale-workflow.git
+	branch = 14.0
