@@ -23,7 +23,7 @@ class Picking(models.Model):
                                             '''
         raw_data = ""
         for line in self.env['sale.order'].sudo().search([('name', '=', self.origin)]).order_line:
-            if line.product_id.packaging_ids:
+            if line.product_id.packaging_ids and line.product_packaging:
                 raw_data += "<tr><td>" + line.product_id.name + "</td><td>" + line.name + "</td><td>" + str(
                     line.product_uom_qty) + "</td><td>" + str(line.product_packaging.name) + "</td><td>" + str(
                     int((line.product_uom_qty) / (
