@@ -8,7 +8,22 @@
       <field name="arch" type="xml">
         <field name="price_unit" position="after">
           <field name="price_unit_without_seller_vat" optional="show"/>
+          <field name="package_price_without_taxes" optional="show"/>
         </field>
+        <field name="taxes_id" position="attributes">
+          <attribute name="optional">hide</attribute>
+        </field>
+      </field>
+    </record>
+    <record id="purchase_order_line_price_history_view_form_inherit" model="ir.ui.view">
+      <field name="name">purchase.order.line.price.history.view.form.inherit</field>
+      <field name="model">purchase.order.line.price.history</field>
+      <field name="inherit_id" ref="purchase_order_line_price_history.purchase_order_line_price_history_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree/field[@name='price_unit']" position="after">
+          <field name="product_packaging" readonly="1" optional="show"/>
+          <field name="package_price_without_taxes" optional="show"/>
+        </xpath>
       </field>
     </record>
   </data>
