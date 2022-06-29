@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 09:11+0000\n"
-"PO-Revision-Date: 2022-03-24 09:11+0000\n"
+"POT-Creation-Date: 2022-06-28 22:18+0000\n"
+"PO-Revision-Date: 2022-06-28 22:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,33 +16,64 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.product_expiration_date
+msgid "Best before:"
+msgstr "A utiliser avant:"
+
+#. module: revivre_website_sale
+#: model:ir.model.fields,field_description:revivre_website_sale.field_product_template__display_name
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: revivre_website_sale
+#: model:ir.model.fields,field_description:revivre_website_sale.field_product_template__id
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order_line__id
 msgid "ID"
 msgstr ""
 
 #. module: revivre_website_sale
+#: model:ir.model.fields,field_description:revivre_website_sale.field_product_template____last_update
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: revivre_website_sale
-#: code:addons/revivre_website_sale/models/sale_order.py:0
-#, python-format
-msgid "Number of Package : "
-msgstr "Nombre de lot : "
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
+msgid "Package Quantity"
+msgstr "Nombre de lot"
 
 #. module: revivre_website_sale
-#: code:addons/revivre_website_sale/models/sale_order.py:0
-#, python-format
-msgid "Package of "
-msgstr "Lot de "
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
+msgid "Price"
+msgstr "Prix"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
+msgid "Product"
+msgstr "Article"
+
+#. module: revivre_website_sale
+#: model:ir.model,name:revivre_website_sale.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
+msgid "Quantity"
+msgstr "Quantité"
 
 #. module: revivre_website_sale
 #: model:ir.model,name:revivre_website_sale.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Ligne de bons de commande"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
+msgid "Total"
+msgstr ""
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.product_expiration_date
+msgid "Use by:"
+msgstr "A utiliser pour:"

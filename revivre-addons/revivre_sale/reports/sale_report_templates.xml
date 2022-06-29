@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']/div[@t-if='doc.user_id.name']" position="replace">
+            <div t-if="doc.payment_term_id" class="col-auto col-3 mw-100 mb-2">
+                <strong>Payment Term:</strong>
+                <p class="m-0" t-field="doc.payment_term_id.name"/>
+            </div>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]" position="before">
+            <t t-set="display_discount" t-value="True"/>
+        </xpath>
+        <xpath expr="//th[@name='th_taxes']" position="replace"/>
+        <xpath expr="//td[@name='td_taxes']" position="replace"/>
+        <xpath expr="//p[@t-field='doc.note']" position="replace"/>
+        <xpath expr="//p[@t-if='doc.payment_term_id.note']" position="replace"/>
+        <!--  expr="//table[hasclass('o_main_table')]/t[@t-as='line']/tr"
+        <attribute name="t-if">not line.is_free_delivery</attribute>
+        external_layout
+        -->
+    </template>
+</odoo>

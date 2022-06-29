@@ -7,6 +7,7 @@
     'author': 'ArkeUp SAS',
     'website': 'https://arkeup.com',
     'depends': [
+        'revivre_base',
         'merge_similar_packaging_product',
     ],
     'data': [
@@ -15,6 +16,7 @@
         # views
         # wizard
         # reports
+        'reports/sale_report_templates.xml',
     ],
     'installable': True,
     'application': False,
