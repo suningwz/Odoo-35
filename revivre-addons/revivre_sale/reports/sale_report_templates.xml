@@ -16,7 +16,6 @@
         <xpath expr="//p[@t-if='doc.payment_term_id.note']" position="replace"/>
         <!--  expr="//table[hasclass('o_main_table')]/t[@t-as='line']/tr"
         <attribute name="t-if">not line.is_free_delivery</attribute>
-        external_layout
         -->
     </template>
 </odoo>
