@@ -2,7 +2,7 @@
 {
     'name': "Revivre Base",
     'summary': 'Custom Base',
-    'description': 'Custom Base',
+    'description': 'Custom Base Module for Revivre',
     'version': '14.0.0.0.0',
     'author': 'ArkeUp SAS',
     'website': 'https://arkeup.com',
