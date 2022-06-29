@@ -4,7 +4,7 @@
     <xpath expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']/div[@class='text-center']/ul" position="replace">
       <ul class="list-inline mb4">
         <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
-             adding d-inline class fixes the problem-->
+             adding d-inline class fixes the problem -->
         <li t-if="company.phone" class="list-inline-item d-inline">
           Phone: <span class="o_force_ltr" t-field="company.phone"/>
         </li>
