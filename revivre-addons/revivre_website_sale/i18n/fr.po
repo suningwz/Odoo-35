@@ -41,7 +41,7 @@ msgstr "Dernière modification le"
 #. module: revivre_website_sale
 #: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
 msgid "Package Quantity"
-msgstr "Nombre de lot"
+msgstr "Nombre de lot(s)"
 
 #. module: revivre_website_sale
 #: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit

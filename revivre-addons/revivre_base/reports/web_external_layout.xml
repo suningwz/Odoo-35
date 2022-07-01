@@ -53,4 +53,9 @@
     </xpath>
     <xpath expr="//div[@name='financial_infos']" position="replace"/>
   </template>
+  <template id="address_layout" inherit_id="web.address_layout">
+    <xpath expr="//div[@name='information_block']" position="replace">
+      <div name="information_block" class="col-6"/>
+    </xpath>
+  </template>
 </odoo>

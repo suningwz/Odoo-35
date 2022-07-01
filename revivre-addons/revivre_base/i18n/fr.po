@@ -84,7 +84,7 @@ msgstr "<strong>Commande:</strong>"
 #. module: revivre_base
 #: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
 msgid "<strong>Packaging Quantity</strong>"
-msgstr "<strong>Nombre de lot</strong>"
+msgstr "<strong>Nombre de lot(s)</strong>"
 
 #. module: revivre_base
 #: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
