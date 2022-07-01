@@ -35,7 +35,7 @@
           <h5>Select the desired product packages</h5>
           <select class="form-control package_selector mb-3" name="attrib">
             <t t-foreach="product_variant.sudo().packaging_ids.sorted(key=lambda x: x.name)" t-as="package_id">
-                <option t-att-value="package_id.id" t-esc="package_id.name" t-att-data-pack-id='package_id.qty'/>
+              <option t-att-value="package_id.id" t-esc="package_id.name" t-att-data-pack-id='package_id.qty'/>
             </t>
           </select>
         </t>
@@ -66,6 +66,7 @@
           <th class="td-img">Product</th>
           <th/>
           <th class="text-center td-qty">Package Quantity</th>
+          <th class="text-center td-price">Packaging Price</th>
           <th class="text-center td-price">Total</th>
           <th class="text-center td-action"></th>
         </tr>
@@ -78,13 +79,20 @@
         </t>
       </td>
     </xpath>
-    <xpath expr='//td[@name="price"]' position='after'>
+    <xpath expr='//td[@name="price"]' position='replace'>
+      <td class="text-center td-price" name="price">
+        <t t-set="package_price_unit" t-value="line.price_unit"/>
+        <t t-if='line.product_packaging'>
+          <t t-set="package_price_unit" t-value="line.product_packaging.sale_price"/>
+        </t>
+        <span t-esc="package_price_unit" style="white-space: nowrap;" t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+      </td>
       <td calss="text-center td-price">
         <span t-field="line.price_total" style="white-space: nowrap;" t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}" groups="account.group_show_line_subtotals_tax_included"/>
       </td>
     </xpath>
     <xpath expr='//td[@class="text-center td-qty"]' position='replace'/>
-    <xpath expr='//td[@name="price"]' position='replace'/>
+    <!--    <xpath expr='//td[@name="price"]' position='replace'/>-->
     <xpath expr='//t[@t-if="line.product_id.packaging_ids"]' position='replace'>
       <t t-if='line.product_packaging'>
         <p>
@@ -95,4 +103,35 @@
       </t>
     </xpath>
   </template>
+  <template id="layout" name="Main layout" inherit_id="portal.frontend_layout">
+    <xpath expr="//footer//span[hasclass('o_footer_copyright_name')]" position="replace">
+      <span class="o_footer_copyright_name mr-2">Copyright &amp;copy;
+        <span t-field="res_company.name" itemprop="name">Company name</span>
+      </span>
+
+    </xpath>
+  </template>
+  <template id="brand_promotion_message" name="Brand Promotion Message">
+    <t t-set="odoo_logo">
+      <a target="_blank"
+         t-attf-href="https://www.arkeup.com/erp-odoo"
+         class="badge badge-light">
+        <img alt="Odoo"
+             src="/web/static/src/img/odoo_logo_tiny.png"
+             style="height: 1em; vertical-align: baseline;"/>
+      </a>
+    </t>
+    <t t-set="final_message">Powered by %s%s</t>
+    <t t-raw="final_message % (odoo_logo, _message and ('- %s' % _message) or '')"/>
+  </template>
+  <template id="brand_promotion" inherit_id="website.brand_promotion">
+        <xpath expr="//t[@t-call='web.brand_promotion_message']" position="replace">
+            <t t-call="web.brand_promotion_message">
+                <t t-set="_message">
+                    <a target="_blank" href="https://www.arkeup.com/erp-odoo?utm_source=db&amp;utm_medium=portal"/>
+                </t>
+                <t t-set="_utm_medium" t-valuef="portal"/>
+            </t>
+        </xpath>
+    </template>
 </odoo>
