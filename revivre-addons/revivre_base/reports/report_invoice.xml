@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="report_invoice_document" inherit_id="sale.report_invoice_document_inherit_sale">
+    <xpath expr="//div[@name='shipping_address_block']" position="replace"/>
+    <xpath expr="//div[@id='informations']" position="replace">
+      <div id="informations" class="row mt32 mb32">
+        <div class="col-auto col-3 mw-100 mb-2" name="customer_code">
+          <strong>Customer Code:</strong>
+          <t t-if="o.partner_id.ref">
+            <p class="m-0" t-field="o.partner_id.ref"/>
+          </t>
+        </div>
+        <div class="col-auto col-3 mw-100 mb-2" name="invoice_date">
+          <strong>Invoice Date:</strong>
+          <t t-if="o.invoice_date">
+            <p class="m-0" t-field="o.invoice_date"/>
+          </t>
+        </div>
+        <div class="col-auto col-3 mw-100 mb-2" name="origin">
+          <strong>Source:</strong>
+          <t t-if="o.invoice_origin">
+            <p class="m-0" t-field="o.invoice_origin"/>
+          </t>
+        </div>
+        <div class="col-auto col-3 mw-100 mb-2" name="reference">
+          <strong>Reference:</strong>
+          <t t-if="o.ref">
+            <p class="m-0" t-field="o.ref"/>
+          </t>
+        </div>
+      </div>
+    </xpath>
+    <xpath expr="//span[@t-field='line.quantity']/.." position="replace">
+      <td class="text-right">
+        <t t-set="packaging_qty" t-value="line.quantity"/>
+        <t t-set="packaging_unit" t-value="line.product_uom_id"/>
+        <t t-if="line.sale_line_ids and line.sale_line_ids.product_packaging">
+          <t t-set="packaging_qty" t-value="line.sale_line_ids.product_packaging_qty"/>
+          <t t-set="packaging_unit" t-value="line.sale_line_ids.product_packaging.name"/>
+        </t>
+        <span t-esc="packaging_qty"/>
+        <span t-esc="packaging_unit"/>
+      </td>
+    </xpath>
+    <xpath expr="//table[@name='invoice_line_table']" position="before">
+      <t t-set="display_discount" t-value="True"/>
+    </xpath>
+    <xpath expr="//th[@name='th_taxes']" position="replace">
+      <th name="th_weight" t-attf-class="text-right">
+        <span>Weight</span>
+      </th>
+    </xpath>
+    <xpath expr="//span[@id='line_tax_ids']/.." position="replace">
+      <td></td>
+    </xpath>
+    <xpath expr="//p[@name='payment_communication']" position="replace">
+      <p name="company_report_comment">
+        <t t-if="o.company_id.comment_for_report">
+          <span t-field="o.company_id.comment_for_report"/>
+        </t>
+      </p>
+      <p t-if="o.move_type in ('out_invoice', 'in_refund') and o.payment_reference" name="payment_communication">
+        Please use the following communication for your payment :
+        <b>
+          <span t-field="o.payment_reference"/>
+        </b>
+      </p>
+    </xpath>
+    <xpath expr="//p[@name='payment_term']" position="after">
+      <p name="invoice_date_due">Date Due:
+        <t t-if="o.invoice_date_due">
+          <span t-field="o.invoice_date_due"/>
+        </t>
+      </p>
+    </xpath>
+  </template>
+</odoo>

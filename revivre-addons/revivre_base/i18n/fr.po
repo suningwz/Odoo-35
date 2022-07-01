@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 22:18+0000\n"
-"PO-Revision-Date: 2022-06-28 22:18+0000\n"
+"POT-Creation-Date: 2022-07-01 15:09+0000\n"
+"PO-Revision-Date: 2022-07-01 15:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,145 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: revivre_base
-#: model_terms:ir.ui.view,arch_db:revivre_base.revivre_external_layout
-msgid "<br/> CGI <br/>"
+#: model:ir.model.fields,field_description:revivre_base.field_res_company__alimhotel_logo
+msgid " Alimhotel Logo"
 msgstr ""
+
+#. module: revivre_base
+#: model:ir.model.fields,field_description:revivre_base.field_res_company__villages_logo
+msgid " Tournees Villages Logo"
+msgstr ""
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "** Fresh product to be stored between 0° and 4°"
+msgstr "** Produit frais à conserver entre 0° et 4°"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid ""
+"<b>Infos:</b>\n"
+"        <br/>\n"
+"        01.30.17.25.65\n"
+"        <br/>\n"
+"        Jeudi 9h-12h et 14h-17h\n"
+"        <br/>\n"
+"        <br/>"
+msgstr ""
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid ""
+"<span>All items couldn't be shipped, the following items will be shipped as "
+"soon as they become available.</span>"
+msgstr ""
+"<span>Tous les éléments n'ont pas pu être expédiés, le reliquat sera expédié"
+" dès qu'il sera disponible.</span>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_invoice_document
+msgid "<span>Weight</span>"
+msgstr "<span>Poids</span>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_invoice_document
+msgid "<strong>Customer Code:</strong>"
+msgstr "<strong>Numéro de client :</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Customer Reference:</strong>"
+msgstr "<strong>Référence client:</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>DLC/DDM</strong>"
+msgstr ""
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_invoice_document
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>Date de la facture :</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Order:</strong>"
+msgstr "<strong>Commande:</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Packaging Quantity</strong>"
+msgstr "<strong>Nombre de lot</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Product</strong>"
+msgstr "<strong>Produits</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Quantity</strong>"
+msgstr "<strong>Quantité</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_invoice_document
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>Référence:</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Shipping Date:</strong>"
+msgstr "<strong>Date d'expédition:</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Signature</strong>"
+msgstr ""
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_invoice_document
+msgid "<strong>Source:</strong>"
+msgstr "<strong>Origine:</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Unit of measure</strong>"
+msgstr "<strong>Unité de mesure</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Weight:</strong>"
+msgstr "<strong>Poids:</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "<strong>Weight</strong>"
+msgstr "<strong>Poids</strong>"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.revivre_external_layout
+msgid "AlimHotelLogo"
+msgstr ""
+
+#. module: revivre_base
+#: model:ir.model.fields,field_description:revivre_base.field_res_company__comment_for_report
+msgid "Comment For Report"
+msgstr "Commentaire pour les rapports"
+
+#. module: revivre_base
+#: model:ir.model,name:revivre_base.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_invoice_document
+msgid "Date Due:"
+msgstr "Date d'échéance :"
+
+#. module: revivre_base
+#: model:ir.model.fields,field_description:revivre_base.field_res_company__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
 
 #. module: revivre_base
 #: model_terms:ir.ui.view,arch_db:revivre_base.revivre_external_layout
@@ -26,9 +162,34 @@ msgid "Email:"
 msgstr "Courriel:"
 
 #. module: revivre_base
+#: model:ir.model.fields,field_description:revivre_base.field_res_company__id
+msgid "ID"
+msgstr ""
+
+#. module: revivre_base
+#: model:ir.model.fields,field_description:revivre_base.field_res_company____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: revivre_base
 #: model_terms:ir.ui.view,arch_db:revivre_base.revivre_external_layout
 msgid "Phone:"
 msgstr "Téléphone:"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_invoice_document
+msgid "Please use the following communication for your payment :"
+msgstr "Merci de rappeler la référence suivante lors de votre paiement :"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.report_delivery_document
+msgid "Qty:"
+msgstr "Qté:"
+
+#. module: revivre_base
+#: model_terms:ir.ui.view,arch_db:revivre_base.revivre_external_layout
+msgid "VillageLogo"
+msgstr ""
 
 #. module: revivre_base
 #: model_terms:ir.ui.view,arch_db:revivre_base.revivre_external_layout
@@ -42,8 +203,8 @@ msgstr ""
 
 #. module: revivre_base
 #: model_terms:ir.ui.view,arch_db:revivre_base.revivre_external_layout
-msgid "| VAT not applicable - Art. 293 B"
-msgstr "| TVA non applicable - Art. 293 B"
+msgid "| VAT not applicable - Art. 293 B CGI"
+msgstr "| TVA non applicable - Art. 293 B CGI"
 
 #. module: revivre_base
 #: model_terms:ir.ui.view,arch_db:revivre_base.revivre_external_layout

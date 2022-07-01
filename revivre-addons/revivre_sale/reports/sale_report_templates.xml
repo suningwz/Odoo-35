@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
-        <xpath expr="//div[@id='informations']/div[@t-if='doc.user_id.name']" position="replace">
-            <div t-if="doc.payment_term_id" class="col-auto col-3 mw-100 mb-2">
-                <strong>Payment Term:</strong>
-                <p class="m-0" t-field="doc.payment_term_id.name"/>
-            </div>
-        </xpath>
-        <xpath expr="//table[hasclass('o_main_table')]" position="before">
-            <t t-set="display_discount" t-value="True"/>
-        </xpath>
-        <xpath expr="//th[@name='th_taxes']" position="replace"/>
-        <xpath expr="//td[@name='td_taxes']" position="replace"/>
-        <xpath expr="//p[@t-field='doc.note']" position="replace"/>
-        <xpath expr="//p[@t-if='doc.payment_term_id.note']" position="replace"/>
-        <!--  expr="//table[hasclass('o_main_table')]/t[@t-as='line']/tr"
-        <attribute name="t-if">not line.is_free_delivery</attribute>
-        -->
-    </template>
+  <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//div[@id='informations']" position="replace">
+      <div class="row mt32 mb32" id="informations">
+        <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2">
+          <strong>Your Reference:</strong>
+          <p class="m-0" t-field="doc.client_order_ref"/>
+        </div>
+        <div class="col-auto col-3 mw-100 mb-2">
+          <strong>Requested Date:</strong>
+          <p class="m-0" t-field="doc.commitment_date"/>
+        </div>
+        <div class="col-auto col-3 mw-100 mb-2">
+          <strong>Payment Term:</strong>
+          <t t-if="doc.payment_term_id">
+            <p class="m-0" t-field="doc.payment_term_id.name"/>
+          </t>
+        </div>
+      </div>
+      <br/>
+      <br/>
+    </xpath>
+    <xpath expr="//td[@name='td_quantity']" position="replace">
+      <td name="td_quantity" class="text-right">
+        <t t-set="packaging_qty" t-value="line.product_uom_qty"/>
+        <t t-set="packaging_unit" t-value="line.product_uom"/>
+        <t t-if="line.product_packaging">
+          <t t-set="packaging_qty" t-value="line.product_packaging_qty"/>
+          <t t-set="packaging_unit" t-value="line.product_packaging.name"/>
+        </t>
+        <span t-esc="packaging_qty"/> <span t-esc="packaging_unit"/>
+      </td>
+    </xpath>
+    <xpath expr="//table[hasclass('o_main_table')]" position="before">
+      <t t-set="display_discount" t-value="True"/>
+    </xpath>
+    <xpath expr="//th[@name='th_taxes']" position="replace"/>
+    <xpath expr="//td[@name='td_taxes']" position="replace"/>
+    <xpath expr="//p[@t-field='doc.note']" position="replace"/>
+    <xpath expr="//p[@t-if='doc.payment_term_id.note']" position="replace"/>
+    <!--  expr="//table[hasclass('o_main_table')]/t[@t-as='line']/tr"
+    <attribute name="t-if">not line.is_free_delivery</attribute>
+    -->
+  </template>
 </odoo>
