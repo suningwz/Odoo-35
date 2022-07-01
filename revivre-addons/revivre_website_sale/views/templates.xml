@@ -22,39 +22,42 @@
   <template id="product_expiration_date" inherit_id="website_sale.product">
     <xpath expr="//t[@t-call='website_sale.product_price']" position="before">
       <div t-if="product.use_expiration_date">
-        <span t-if="product.use_time != 0">
-          <t t-set="expiring_lot" t-value="product.get_expiring_lot(product_variant, 'use_date')"/>
-          Best before:
-          <t style="float:right;" t-esc="expiring_lot.use_date" t-options='{"widget": "date"}'/>
-        </span>
         <span t-if="product.expiration_time != 0">
           <t t-set="expiring_lot" t-value="product.get_expiring_lot(product_variant, 'expiration_date')"/>
-          Use by:
+          Best before:
           <t style="float:right;" t-esc="expiring_lot.expiration_date" t-options='{"widget": "date"}'/>
         </span>
+      </div>
+    </xpath>
+    <xpath expr="//a[@id='add_to_cart']" position="before">
+      <div class='wk_packaging'>
+        <t t-if="product_variant.sudo().packaging_ids">
+          <h5>Select the desired product packages</h5>
+          <select class="form-control package_selector mb-3" name="attrib">
+            <t t-foreach="product_variant.sudo().packaging_ids.sorted(key=lambda x: x.name)" t-as="package_id">
+                <option t-att-value="package_id.id" t-esc="package_id.name" t-att-data-pack-id='package_id.qty'/>
+            </t>
+          </select>
+        </t>
       </div>
     </xpath>
   </template>
   <template id="product_price" inherit_id="website_sale.product_price">
     <xpath expr="//b[hasclass('oe_price')]" position="replace"/>
-    <xpath expr="//div[hasclass('wk_packaging')]" position="after">
-      <!--<t t-if="product.packaging_ids">
-        <b class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-        /
-        LOL
-        <b t-esc="product.packaging"/><br/>
-      </t>-->
-      <t t-if="product">
-        <b class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-        /
-        <b t-esc="product.uom_name"/>
+    <xpath expr="//div[hasclass('wk_packaging')]" position="before">
+      <t t-if="product.packaging_ids">
+        <t t-foreach="product.packaging_ids" t-as="package">
+          <b style="white-space: nowrap;" t-esc="package.sale_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+          /
+          <b t-esc="package.name"/>
+          <br/>
+        </t>
       </t>
-      <t t-else="">
-        <b class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-        /
-        <b t-esc="product.uom_name"/>
-      </t>
+      <t class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+      /
+      <t t-esc="product.uom_name"/>
     </xpath>
+    <xpath expr="//div[hasclass('wk_packaging')]" position="replace"/>
   </template>
   <template id="wk_cart_inherit" inherit_id='website_display_packaging_options.wk_cart_inherit'>
     <xpath expr="//thead" position="replace">
@@ -63,8 +66,6 @@
           <th class="td-img">Product</th>
           <th/>
           <th class="text-center td-qty">Package Quantity</th>
-          <th class="text-center td-qty">Quantity</th>
-          <th class="text-center td-price">Price</th>
           <th class="text-center td-price">Total</th>
           <th class="text-center td-action"></th>
         </tr>
@@ -82,6 +83,8 @@
         <span t-field="line.price_total" style="white-space: nowrap;" t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}" groups="account.group_show_line_subtotals_tax_included"/>
       </td>
     </xpath>
+    <xpath expr='//td[@class="text-center td-qty"]' position='replace'/>
+    <xpath expr='//td[@name="price"]' position='replace'/>
     <xpath expr='//t[@t-if="line.product_id.packaging_ids"]' position='replace'>
       <t t-if='line.product_packaging'>
         <p>

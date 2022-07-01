@@ -8,14 +8,18 @@
     'website': 'https://arkeup.com',
     'depends': [
         'web',
+        'merge_similar_packaging_product',
     ],
     'data': [
         # data
         # security
         # views
+        'views/res_company_views.xml',
         # wizard
         # reports
         'reports/web_external_layout.xml',
+        'reports/report_deliveryslip.xml',
+        'reports/report_invoice.xml',
     ],
     'installable': True,
     'application': False,
