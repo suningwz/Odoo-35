@@ -8,6 +8,7 @@
     'website': 'https://arkeup.com',
     'depends': [
         'revivre_base',
+        'purchase',
         'website_display_packaging_options',
     ],
     'data': [
