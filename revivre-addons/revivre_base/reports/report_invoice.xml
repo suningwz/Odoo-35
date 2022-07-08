@@ -55,7 +55,10 @@
     <xpath expr="//span[@id='line_tax_ids']/.." position="replace">
       <td name="td_weight" class="text-right">
         <t t-set="weight" t-value="line.product_id.weight*line.quantity"/>
-        <span t-esc="weight"/>
+        <t t-if="line.sale_line_ids and line.sale_line_ids.product_packaging">
+          <t t-set="weight" t-value="line.sale_line_ids.product_packaging.weight*line.sale_line_ids.product_packaging_qty"/>
+        </t>
+        <span t-esc="'%.2f' % weight"/>
       </td>
     </xpath>
     <xpath expr="//p[@name='payment_communication']" position="replace">

@@ -137,4 +137,7 @@
   <record id="purchase.portal_my_home_purchase" model="ir.ui.view">
     <field name="active">False</field>
   </record>
+  <record id="website_sale.reduction_code" model="ir.ui.view">
+    <field name="active">False</field>
+  </record>
 </odoo>
