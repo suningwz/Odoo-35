@@ -18,8 +18,11 @@
         </div>
         <div class="col-auto col-3 mw-100 mb-2" name="origin">
           <strong>Source:</strong>
-          <t t-if="o.invoice_origin">
+          <t t-if="o.invoice_origin and o.move_type != 'out_refund'">
             <p class="m-0" t-field="o.invoice_origin"/>
+          </t>
+          <t t-if="o.ref and o.move_type == 'out_refund'">
+            <t t-esc="o.ref.replace('Extourne de : ', '')"/>
           </t>
         </div>
         <div class="col-auto col-3 mw-100 mb-2" name="reference">
@@ -32,6 +35,11 @@
         </div>
       </div>
     </xpath>
+    <xpath expr="//th[@name='th_quantity']" position="replace">
+      <th name="th_quantity" class="text-right">
+        <span>Packaging Quantity</span>
+      </th>
+    </xpath>
     <xpath expr="//span[@t-field='line.quantity']/.." position="replace">
       <td class="text-right">
         <t t-set="packaging_qty" t-value="line.quantity"/>
@@ -40,7 +48,7 @@
           <t t-set="packaging_qty" t-value="line.sale_line_ids.product_packaging_qty"/>
           <t t-set="packaging_unit" t-value="line.sale_line_ids.product_packaging.name"/>
         </t>
-        <span t-esc="packaging_qty"/>
+        <span t-esc="int(packaging_qty)"/>
         <span t-esc="packaging_unit"/>
       </td>
     </xpath>
@@ -62,7 +70,7 @@
       </td>
     </xpath>
     <xpath expr="//p[@name='payment_communication']" position="replace">
-      <p name="company_report_comment">
+      <p name="company_report_comment" t-if="o.move_type == 'out_invoice'">
         <t t-if="o.company_id.comment_for_report">
           <span t-field="o.company_id.comment_for_report"/>
         </t>

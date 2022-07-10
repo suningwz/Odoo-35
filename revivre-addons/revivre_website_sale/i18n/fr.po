@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-01 15:09+0000\n"
-"PO-Revision-Date: 2022-07-01 15:09+0000\n"
+"POT-Creation-Date: 2022-07-10 23:22+0000\n"
+"PO-Revision-Date: 2022-07-10 23:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,27 +21,55 @@ msgid "Best before:"
 msgstr "A utiliser avant:"
 
 #. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.layout
+msgid "Company name"
+msgstr "Nom de la société"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.layout
+msgid "Copyright &amp;copy;"
+msgstr ""
+
+#. module: revivre_website_sale
 #: model:ir.model.fields,field_description:revivre_website_sale.field_product_template__display_name
+#: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order__display_name
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: revivre_website_sale
 #: model:ir.model.fields,field_description:revivre_website_sale.field_product_template__id
+#: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order__id
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order_line__id
 msgid "ID"
 msgstr ""
 
 #. module: revivre_website_sale
 #: model:ir.model.fields,field_description:revivre_website_sale.field_product_template____last_update
+#: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order____last_update
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.brand_promotion_message
+msgid "Odoo"
+msgstr ""
+
+#. module: revivre_website_sale
 #: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
 msgid "Package Quantity"
 msgstr "Nombre de lot(s)"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
+msgid "Packaging Price"
+msgstr "Prix du lot"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.brand_promotion_message
+msgid "Powered by %s%s"
+msgstr "Créé avec %s%s"
 
 #. module: revivre_website_sale
 #: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
@@ -52,6 +80,11 @@ msgstr "Article"
 #: model:ir.model,name:revivre_website_sale.model_product_template
 msgid "Product Template"
 msgstr "Modèle d'article"
+
+#. module: revivre_website_sale
+#: model:ir.model,name:revivre_website_sale.model_sale_order
+msgid "Sales Order"
+msgstr "Commande"
 
 #. module: revivre_website_sale
 #: model:ir.model,name:revivre_website_sale.model_sale_order_line
