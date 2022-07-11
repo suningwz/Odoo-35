@@ -12,3 +12,19 @@ class SaleOrderLine(models.Model):
     #         res.append(_('Package of ') + str(int(self.product_packaging.uom_id.factor_inv)) + ' ' +
     #                    _('Number of Package : ') + str(int(self.product_uom_qty / self.product_packaging.uom_id.factor_inv if self.product_packaging.uom_id.factor_inv > 0 else 1)))
     #     return res
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    @api.depends('order_line.product_uom_qty', 'order_line.product_id')
+    def _compute_cart_info(self):
+        for order in self:
+            cart_quantity = 0
+            for line in order.website_order_line:
+                if line.product_packaging:
+                    cart_quantity += line.product_packaging_qty
+                else:
+                    cart_quantity += line.product_uom_qty
+            order.cart_quantity = int(cart_quantity)
+            order.only_services = all(l.product_id.type in ('service', 'digital') for l in order.website_order_line)

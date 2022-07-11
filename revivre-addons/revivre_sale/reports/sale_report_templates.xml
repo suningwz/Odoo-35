@@ -24,16 +24,19 @@
     <xpath expr="//td[@name='td_quantity']" position="replace">
       <td name="td_quantity" class="text-right">
         <t t-set="packaging_qty" t-value="line.product_uom_qty"/>
-        <t t-set="packaging_unit" t-value="line.product_uom"/>
+        <t t-set="packaging_unit" t-value="line.product_uom.name"/>
         <t t-if="line.product_packaging">
           <t t-set="packaging_qty" t-value="line.product_packaging_qty"/>
           <t t-set="packaging_unit" t-value="line.product_packaging.name"/>
         </t>
-        <span t-esc="packaging_qty"/> <span t-esc="packaging_unit"/>
+        <span t-esc="int(packaging_qty)"/> <span t-esc="packaging_unit"/>
       </td>
     </xpath>
     <xpath expr="//table[hasclass('o_main_table')]" position="before">
       <t t-set="display_discount" t-value="True"/>
+    </xpath>
+    <xpath expr="//th[@name='th_quantity']" position="replace">
+        <th name="th_quantity" class="text-right">Packaging Quantity</th>
     </xpath>
     <xpath expr="//th[@name='th_taxes']" position="replace"/>
     <xpath expr="//td[@name='td_taxes']" position="replace"/>
