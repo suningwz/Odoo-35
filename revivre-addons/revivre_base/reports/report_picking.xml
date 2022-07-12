@@ -34,14 +34,25 @@
       <t t-if="sale_uom.factor_inv != 0">
         <t t-set="qty_packaging" t-value="ml.product_uom_qty/sale_uom.factor_inv" t-if="o.state != 'done'"/>
         <t t-set="qty_packaging" t-value="ml.qty_done/sale_uom.factor_inv" t-if="o.state == 'done'"/>
+        <t t-set="weight" t-value="ml.product_id.weight*qty_packaging*sale_uom.factor_inv"/>
       </t>
       <t t-if="sale_uom.factor_inv == 0">
         <t t-set="qty_packaging" t-value="ml.product_uom_qty" t-if="o.state != 'done'"/>
         <t t-set="qty_packaging" t-value="ml.qty_done" t-if="o.state == 'done'"/>
+        <t t-set="weight" t-value="ml.product_id.weight*qty_packaging"/>
       </t>
       <t t-set="unit_measure" t-value="sale_uom.name"/>
       <t t-set="dlc_ddm" t-value="False"/>
-      <t t-set="weight" t-value="ml.product_id.weight*qty_packaging"/>
+      <t t-if="ml.move_id.sale_line_id and not ml.move_id.sale_line_id.product_packaging">
+        <t t-if="(ml.move_id.lot_ids and ml.move_id.lot_ids.expiration_date) or (ml.lot_id and ml.lot_id.expiration_date)">
+          <t t-if="ml.lot_id">
+            <t t-set="dlc_ddm" t-value="ml.lot_id.expiration_date.strftime('%d/%m/%Y')"/>
+          </t>
+          <t t-if="not ml.lot_id">
+            <t t-set="dlc_ddm" t-value="ml.move_id.lot_ids.expiration_date.strftime('%d/%m/%Y')"/>
+          </t>
+        </t>
+      </t>
       <t t-if="ml.move_id.sale_line_id and ml.move_id.sale_line_id.product_packaging">
         <t t-set="qty_packaging" t-value="ml.move_id.sale_line_id.product_packaging_qty"/>
         <t t-set="unit_measure" t-value="ml.move_id.sale_line_id.product_packaging.name"/>
@@ -87,7 +98,7 @@
             <t t-set="product_barcode" t-value="move.product_id.barcode"/>
           </t>
         </td>
-        <td>
+        <td name="td_dlc_ddm">
           <t t-if="dlc_ddm">
             <t t-esc="dlc_ddm"/>
             Qty:
@@ -98,6 +109,21 @@
           <span t-esc="'%.2f' % weight"/>
         </td>
       </tr>
+    </xpath>
+  </template>
+  <template id="report_shipping2" inherit_id="delivery.report_shipping2">
+    <xpath expr="//div[@t-if='o.weight']" position="replace">
+      <div class="col-auto" name="total_weight">
+        <strong>Weight:</strong>
+        <t t-set="total_weight" t-value="0"/>
+        <t t-foreach="o.move_lines.filtered(lambda x: x.product_uom_qty)" t-as="ml">
+          <t t-set="total_weight" t-value="total_weight+(ml.product_uom_qty*ml.product_id.weight)"/>
+        </t>
+        <p>
+          <t t-esc="'%.2f' % total_weight"/>
+          <t t-esc="o.weight_uom_name"/>
+        </p>
+      </div>
     </xpath>
   </template>
 </odoo>

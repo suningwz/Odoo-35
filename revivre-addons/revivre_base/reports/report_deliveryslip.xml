@@ -37,9 +37,11 @@
           </div>
           <div class="col-auto" name="customer_reference">
             <strong>Weight:</strong>
-            <t t-if="o.weight">
-              <p t-field="o.weight"/>
+            <t t-set="total_weight" t-value="0"/>
+            <t t-foreach="o.move_lines.filtered(lambda x: x.product_uom_qty)" t-as="ml">
+              <t t-set="total_weight" t-value="total_weight+(ml.product_uom_qty*ml.product_id.weight)"/>
             </t>
+            <p t-esc="'%.2f' % total_weight"/>
           </div>
         </div>
         <br/>
@@ -71,13 +73,14 @@
               <t t-set="sale_uom" t-value="move.sale_line_id.product_uom"/>
               <t t-if="sale_uom.factor_inv != 0">
                 <t t-set="qty_packaging" t-value="move.product_uom_qty/sale_uom.factor_inv"/>
+                <t t-set="weight" t-value="move.product_id.weight*qty_packaging*sale_uom.factor_inv"/>
               </t>
               <t t-if="sale_uom.factor_inv == 0">
                 <t t-set="qty_packaging" t-value="move.product_uom_qty"/>
+                <t t-set="weight" t-value="move.product_id.weight*qty_packaging"/>
               </t>
               <t t-set="unit_measure" t-value="sale_uom.name"/>
               <t t-set="dlc_ddm" t-value="False"/>
-              <t t-set="weight" t-value="move.product_id.weight*qty_packaging"/>
               <t t-if="move.sale_line_id and move.sale_line_id.product_packaging">
                 <t t-set="qty_packaging" t-value="move.sale_line_id.product_packaging_qty"/>
                 <t t-set="unit_measure" t-value="move.sale_line_id.product_packaging.name"/>
