@@ -100,3 +100,31 @@ msgstr "Sélectionnez votre conditionnement"
 #: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
 msgid "Total"
 msgstr ""
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.payment
+msgid "Pay Now"
+msgstr "Confirmer votre commande"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.cart
+msgid ""
+"<span class=\"\">Process Checkout</span>\n"
+"                                        <span class=\"fa fa-chevron-right\"/>"
+msgstr ""
+"<span class=\"\">Vos adresses</span>\n"
+"                                        <span class=\"fa fa-chevron-right\"/>"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.cart
+msgid ""
+"<span class=\"\">Process Checkout</span>\n"
+"                                    <span class=\"fa fa-chevron-right\"/>"
+msgstr ""
+"<span class=\"\">Vos adresses</span>\n"
+"                                    <span class=\"fa fa-chevron-right\"/>"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:website_sale.short_cart_summary
+msgid "<span>Process Checkout</span>"
+msgstr "<span>Vos adresses</span>"

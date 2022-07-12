@@ -78,6 +78,9 @@
           <input type="text" class="js_quantity form-control quantity m-auto" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_packaging_qty)" readonly='True' style='width: 28%; !important;'/>
           <!--<span t-field="line.product_packaging_qty" t-options='{"widget": "integer"}' style="white-space: nowrap;"/>-->
         </t>
+        <t t-if='not line.product_packaging'>
+          <input type="text" class="js_quantity form-control quantity m-auto" t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty" readonly='True' style='width: 28%; !important;'/>
+        </t>
       </td>
     </xpath>
     <xpath expr='//td[@name="price"]' position='replace'>
@@ -138,4 +141,7 @@
   <record id="purchase.portal_my_home_purchase" model="ir.ui.view">
     <field name="active">False</field>
   </record>
+  <template id="checkout" inherit_id="website_sale.checkout">
+    <xpath expr="//form[@action='/shop/address']" position="replace"/>
+  </template>
 </odoo>
