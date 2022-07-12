@@ -42,7 +42,9 @@
             </t>
           </div>
         </div>
-        <br/><br/><br/>
+        <br/>
+        <br/>
+        <br/>
         <table class="table table-sm" name="stock_move_table">
           <thead>
             <tr>
@@ -66,8 +68,14 @@
           <tbody>
             <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>
             <tr t-foreach="lines" t-as="move">
-              <t t-set="qty_packaging" t-value="move.product_uom_qty"/>
-              <t t-set="unit_measure" t-value="move.product_uom.name"/>
+              <t t-set="sale_uom" t-value="move.sale_line_id.product_uom"/>
+              <t t-if="sale_uom.factor_inv != 0">
+                <t t-set="qty_packaging" t-value="move.product_uom_qty/sale_uom.factor_inv"/>
+              </t>
+              <t t-if="sale_uom.factor_inv == 0">
+                <t t-set="qty_packaging" t-value="move.product_uom_qty"/>
+              </t>
+              <t t-set="unit_measure" t-value="sale_uom.name"/>
               <t t-set="dlc_ddm" t-value="False"/>
               <t t-set="weight" t-value="move.product_id.weight*qty_packaging"/>
               <t t-if="move.sale_line_id and move.sale_line_id.product_packaging">
@@ -92,7 +100,9 @@
               </td>
               <td>
                 <t t-if="dlc_ddm">
-                  <t t-esc="dlc_ddm"/> Qty: <t t-esc="int(qty_packaging)"/>
+                  <t t-esc="dlc_ddm"/>
+                  Qty:
+                  <t t-esc="int(qty_packaging)"/>
                 </t>
               </td>
               <td name="td_weight" class="text-right">
@@ -148,7 +158,9 @@
             <p t-if="o.signature" t-field="o.partner_id.name"/>
           </div>
         </div>
-        <br/><br/><br/>
+        <br/>
+        <br/>
+        <br/>
         <p>** Fresh product to be stored between 0° and 4°</p>
       </div>
     </xpath>
