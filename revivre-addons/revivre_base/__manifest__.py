@@ -20,9 +20,6 @@
         # wizard
         # reports
         'reports/web_external_layout.xml',
-        'reports/report_deliveryslip.xml',
-        'reports/report_invoice.xml',
-        'reports/report_picking.xml',
     ],
     'installable': True,
     'application': False,
