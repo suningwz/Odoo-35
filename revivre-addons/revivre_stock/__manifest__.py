@@ -7,7 +7,8 @@
     'author': 'ArkeUp SAS',
     'website': 'https://arkeup.com',
     'depends': [
-        'revivre_base',
+        'stock',
+        'delivery',
     ],
     'data': [
         'views/stock_move_line.xml',

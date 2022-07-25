@@ -8,7 +8,6 @@
     'website': 'https://arkeup.com',
     'depends': [
         'web',
-        'merge_similar_packaging_product',
         'ddmrp',
     ],
     'data': [

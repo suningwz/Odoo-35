@@ -111,6 +111,7 @@
       </tr>
     </xpath>
   </template>
+
   <template id="report_shipping2" inherit_id="delivery.report_shipping2">
     <xpath expr="//div[@t-if='o.weight']" position="replace">
       <div class="col-auto" name="total_weight">

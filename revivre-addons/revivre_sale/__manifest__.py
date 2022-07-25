@@ -7,8 +7,8 @@
     'author': 'ArkeUp SAS',
     'website': 'https://arkeup.com',
     'depends': [
+        'sale',
         'revivre_base',
-        'merge_similar_packaging_product',
     ],
     'data': [
         # data
