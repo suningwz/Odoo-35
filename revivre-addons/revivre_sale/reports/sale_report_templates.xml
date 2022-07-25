@@ -17,6 +17,9 @@
             <p class="m-0" t-field="doc.payment_term_id.name"/>
           </t>
         </div>
+        <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto col-3 mw-100 mb-2" name="expiration_date" style="display:none;">
+          <p class="m-0" t-field="doc.validity_date"/>
+        </div>
       </div>
       <br/>
       <br/>
