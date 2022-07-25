@@ -19,6 +19,7 @@
         # wizard
         # reports
         'reports/web_external_layout.xml',
+        'views/report_asset.xml',
     ],
     'installable': True,
     'application': False,
