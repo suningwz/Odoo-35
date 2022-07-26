@@ -53,7 +53,7 @@
       <t t-if="sale_uom.factor_inv == 0">
         <t t-set="qty_packaging" t-value="ml.product_uom_qty" t-if="o.state != 'done'"/>
         <t t-set="qty_packaging" t-value="ml.qty_done" t-if="o.state == 'done'"/>
-        <t t-set="weight" t-value="ml.product_id.weight*qty_packaging"/>
+        <t t-set="weight" t-value="round(ml.product_id.weight*qty_packaging,2)"/>
       </t>
       <t t-set="unit_measure" t-value="sale_uom.name"/>
 <!--      <t t-set="dlc_ddm" t-value="False"/>-->
