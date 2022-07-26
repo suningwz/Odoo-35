@@ -9,6 +9,7 @@
     'depends': [
         'stock',
         'delivery',
+        'shopfloor',
     ],
     'data': [
         'views/stock_move_line.xml',

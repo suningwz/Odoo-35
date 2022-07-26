@@ -17,7 +17,7 @@
         # wizard
         # reports
         'reports/sale_report_templates.xml',
-        'reports/report_invoice.xml',
+        # 'reports/report_invoice.xml',
     ],
     'installable': True,
     'application': False,
