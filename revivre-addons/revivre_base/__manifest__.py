@@ -8,7 +8,6 @@
     'website': 'https://arkeup.com',
     'depends': [
         'web',
-        'merge_similar_packaging_product',
         'ddmrp',
     ],
     'data': [
@@ -20,9 +19,7 @@
         # wizard
         # reports
         'reports/web_external_layout.xml',
-        'reports/report_deliveryslip.xml',
-        'reports/report_invoice.xml',
-        'reports/report_picking.xml',
+        'views/report_asset.xml',
     ],
     'installable': True,
     'application': False,

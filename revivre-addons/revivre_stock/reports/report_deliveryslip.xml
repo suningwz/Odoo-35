@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <template id="report_delivery_document" inherit_id="stock.report_delivery_document">
+    <xpath expr="//t[@name='partner_header']" position="before">
+      <div name="Informations" t-if="o.partner_id.picking_warn == 'warning'">
+        <span t-field="o.partner_id.picking_warn_msg"/>
+        <br/>
+        <br/>
+      </div>
+    </xpath>
+    <xpath expr="//div[@class='page']" position="replace">
+      <div class="page">
+        <h2>
+          <span t-field="o.name"/>
+        </h2>
+        <div class="row mt32 mb32">
+          <div class="col-auto" name="customer_reference">
+            <strong>Customer Reference:</strong>
+            <t t-if="o.sudo().sale_id.client_order_ref">
+              <p t-field="o.sudo().sale_id.client_order_ref"/>
+            </t>
+          </div>
+          <div class="col-auto" name="div_origin">
+            <strong>Order:</strong>
+            <t t-if="o.origin">
+              <p t-field="o.origin"/>
+            </t>
+          </div>
+          <div t-if="o.state" class="col-auto" name="div_sched_date">
+            <strong>Shipping Date:</strong>
+            <t t-if="o.state == 'done'">
+              <p t-field="o.date_done"/>
+            </t>
+            <t t-if="o.state != 'done'">
+              <p t-field="o.scheduled_date"/>
+            </t>
+          </div>
+          <div class="col-auto" name="customer_reference">
+            <strong>Weight:</strong>
+            <t t-set="total_weight" t-value="0"/>
+            <t t-foreach="o.move_lines.filtered(lambda x: x.product_uom_qty)" t-as="ml">
+              <t t-set="total_weight" t-value="total_weight+(ml.product_uom_qty*ml.product_id.weight)"/>
+            </t>
+            <p t-esc="'%.2f' % total_weight"/>
+          </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <table class="table table-sm" t-if="o.state!='done'" name="stock_move_table">
+                        <thead>
+                            <tr>
+                                <th name="th_sm_product"><strong>Product</strong></th>
+                                <th name="th_sm_quantity"><strong>Quantity</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>
+                            <tr t-foreach="lines" t-as="move">
+                                <td>
+                                    <span t-field="move.product_id"/>
+                                    <p t-if="move.description_picking != move.product_id.name">
+                                        <span t-field="move.description_picking"/>
+                                    </p>
+                                </td>
+                                <td>
+                                    <span t-field="move.product_uom_qty"/>
+                                    <span t-field="move.product_uom"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm mt48" t-if="o.move_line_ids and o.state=='done'" name="stock_move_line_table">
+                        <t t-set="has_serial_number" t-value="False"/>
+                        <t t-set="has_serial_number" t-value="o.move_line_ids.mapped('lot_id')" groups="stock.group_lot_on_delivery_slip"/>
+                        <thead>
+                            <tr>
+                                <th name="th_sml_product"><strong>Product</strong></th>
+                                <t name="lot_serial" t-if="has_serial_number">
+                                    <th>
+                                        Lot/Serial Number
+                                    </th>
+                                    <th>
+                                        Expiration date
+                                    </th>
+                                </t>
+                                <th name="th_sml_quantity" class="text-center"><strong>Quantity</strong></th>
+                                <th name="th_sml_packs" class="text-center"><strong>Done packs</strong></th>
+                                <th name="th_sml_weight" class="text-center"><strong>Weight</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- This part gets complicated with different use cases (additional use cases in extensions of this report):
+                                1. If serial numbers are used and set to print on delivery slip => print lines as is, otherwise group them by overlapping
+                                    product + description + uom combinations
+                                2. If any packages are assigned => split products up by package (or non-package) and then apply use case 1 -->
+                            <!-- If has destination packages => create sections of corresponding products -->
+                            <t t-if="o.has_packages" name="has_packages">
+                                <t t-set="packages" t-value="o.move_line_ids.mapped('result_package_id')"/>
+                                <t t-foreach="packages" t-as="package">
+                                    <t t-call="stock.stock_report_delivery_package_section_line"/>
+                                    <t t-set="package_move_lines" t-value="o.move_line_ids.filtered(lambda l: l.result_package_id == package)"/>
+                                    <!-- If printing lots/serial numbers => keep products in original lines -->
+                                    <t t-if="has_serial_number">
+                                        <tr t-foreach="package_move_lines" t-as="move_line">
+                                            <t t-call="stock.stock_report_delivery_has_serial_move_line"/>
+                                        </tr>
+                                    </t>
+                                    <!-- If not printing lots/serial numbers => merge lines with same product+description+uom -->
+                                    <t t-else="">
+                                        <t t-set="aggregated_lines" t-value="package_move_lines._get_aggregated_product_quantities()"/>
+                                        <t t-call="stock.stock_report_delivery_aggregated_move_lines"/>
+                                    </t>
+                                </t>
+                                <!-- Make sure we do another section for package-less products if they exist -->
+                                <t t-set="move_lines" t-value="o.move_line_ids.filtered(lambda l: not l.result_package_id)"/>
+                                <t t-if="move_lines" name="no_package_move_lines">
+                                    <t t-call="stock.stock_report_delivery_no_package_section_line" name="no_package_section"/>
+                                    <t t-if="has_serial_number">
+                                        <tr t-foreach="move_lines" t-as="move_line">
+                                            <t t-call="stock.stock_report_delivery_has_serial_move_line"/>
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="aggregated_lines" t-value="move_lines._get_aggregated_product_quantities()"/>
+                                        <t t-if="aggregated_lines">
+                                            <t t-call="stock.stock_report_delivery_aggregated_move_lines"/>
+                                        </t>
+                                    </t>
+                                </t>
+                            </t>
+                            <!-- No destination packages -->
+                            <t t-else="">
+                                <!-- If printing lots/serial numbers => keep products in original lines -->
+                                <t t-if="has_serial_number">
+                                    <tr t-foreach="o.move_line_ids" t-as="move_line">
+                                        <t t-call="stock.stock_report_delivery_has_serial_move_line"/>
+                                    </tr>
+                                </t>
+                                <!-- If not printing lots/serial numbers => merge lines with same product -->
+                                <t t-else="" name="aggregated_move_lines">
+                                    <t t-set="aggregated_lines" t-value="o.move_line_ids._get_aggregated_product_quantities()"/>
+                                        <t t-call="stock.stock_report_delivery_aggregated_move_lines"/>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+
+        <t t-set="backorders" t-value="o.backorder_ids.filtered(lambda x: x.state not in ('done', 'cancel'))"/>
+        <t t-if="o.backorder_ids and backorders">
+          <p>
+            <span>All items couldn't be shipped, the following items will be shipped as soon as they become available.</span>
+          </p>
+          <table class="table table-sm" name="stock_backorder_table">
+            <thead>
+              <tr>
+                <th name="th_sb_product">
+                  <strong>Product</strong>
+                </th>
+                <th name="th_sb_quantity" class="text-center">
+                  <strong>Quantity</strong>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="backorders" t-as="backorder">
+                <t t-set="bo_lines" t-value="backorder.move_lines.filtered(lambda x: x.product_uom_qty)"/>
+                <tr t-foreach="bo_lines" t-as="bo_line">
+                  <td>
+                    <span t-field="bo_line.product_id"/>
+                    <p t-if="bo_line.description_picking != bo_line.product_id.name">
+                      <span t-field="bo_line.description_picking"/>
+                    </p>
+                  </td>
+                  <td class="text-center">
+                    <span t-field="bo_line.product_uom_qty"/>
+                    <span t-field="bo_line.product_uom"/>
+                  </td>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+        </t>
+
+        <div class="mt32 ml64 mr4" name="signature">
+          <div class="offset-8">
+            <strong>Signature</strong>
+          </div>
+          <div class="offset-8">
+            <img t-if="o.signature" t-att-src="image_data_uri(o.signature)" style="max-height: 4cm; max-width: 8cm;"/>
+          </div>
+          <div class="offset-8 text-center">
+            <p t-if="o.signature" t-field="o.partner_id.name"/>
+          </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <p>** Fresh product to be stored between 0° and 4°</p>
+      </div>
+    </xpath>
+  </template>
+
+    <template
+        id="stock_report_delivery_has_serial_move_line_revivre"
+        inherit_id="stock.stock_report_delivery_has_serial_move_line">
+
+        <xpath expr="//span[@t-field='move_line.lot_id.name']" position="after">
+            <t t-set="dlc_ddm" t-value="False"/>
+            <t t-if="move_line.lot_id.expiration_date">
+              <t t-set="dlc_ddm" t-value="move_line.lot_id.expiration_date.strftime('%d/%m/%Y')"/>
+            </t>
+            <td>
+                <t t-esc="dlc_ddm"/>
+            </td>
+        </xpath>
+        <xpath expr="//td[@name='move_line_lot_qty_done']" position="after">
+            <td class="text-center" name="move_line_qty_done_packs">
+                 <span t-field="move_line.qty_done_packs"/>
+            </td>
+            <t t-set="weight" t-value="move_line.product_id.weight*move_line.qty_done"/>
+            <t t-set="weight_uom" t-value="move_line.product_id.weight_uom_id.name"/>
+            <td class="text-center" name="move_line_weight">
+                <t t-esc="weight"/>
+                <t t-esc="weight_uom"/>
+            </td>
+        </xpath>
+    </template>
+
+    <template
+        id="report_delivery_aggregated_moveline"
+        inherit_id="stock.stock_report_delivery_aggregated_move_lines"
+    >
+        <xpath expr="//td[@name='move_line_aggregated_qty_done']" position="after">
+            <td class="text-right"><span t-esc="aggregated_lines[line]['qty_done_packs']" /></td>
+            <td class="text-right"><span t-esc="aggregated_lines[line]['weight']"/>
+                <span t-esc="aggregated_lines[line]['weight_uom_id'].name"/></td>
+        </xpath>
+    </template>
+
+</odoo>
+
+
+
+<!--          <tbody>-->
+<!--            <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>-->
+<!--&lt;!&ndash;            <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.qty_done)"/>&ndash;&gt;-->
+<!--            <tr t-foreach="lines" t-as="move">-->
+<!--              <t t-set="sale_uom" t-value="move.sale_line_id.product_uom"/>-->
+<!--              <t t-if="sale_uom.factor_inv != 0">-->
+<!--                <t t-set="qty_packaging" t-value="move.product_uom_qty/sale_uom.factor_inv"/>-->
+<!--                <t t-set="weight" t-value="move.product_id.weight*qty_packaging*sale_uom.factor_inv"/>-->
+<!--              </t>-->
+<!--              <t t-if="sale_uom.factor_inv == 0">-->
+<!--                <t t-set="qty_packaging" t-value="move.product_uom_qty"/>-->
+<!--                <t t-set="weight" t-value="move.product_id.weight*qty_packaging"/>-->
+<!--              </t>-->
+<!--              <t t-set="unit_measure" t-value="sale_uom.name"/>-->
+<!--              <t t-set="dlc_ddm" t-value="False"/>-->
+<!--              <t t-if="move.sale_line_id and move.sale_line_id.product_packaging">-->
+<!--                <t t-set="qty_packaging" t-value="move.sale_line_id.product_packaging_qty"/>-->
+<!--                <t t-set="unit_measure" t-value="move.sale_line_id.product_packaging.name"/>-->
+<!--&lt;!&ndash;                <t t-if="move.lot_ids and move.lot_ids.expiration_date">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <t t-set="dlc_ddm" t-value="move.lot_ids.expiration_date.strftime('%d/%m/%Y')"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </t>&ndash;&gt;-->
+<!--                <t t-set="weight" t-value="move.sale_line_id.product_packaging.weight*move.sale_line_id.product_packaging_qty"/>-->
+<!--              </t>-->
+<!--              <td>-->
+<!--                <span t-field="move.product_id"/>-->
+<!--                <p t-if="move.description_picking != move.product_id.name">-->
+<!--                  <span t-field="move.description_picking"/>-->
+<!--                </p>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <span t-esc="int(qty_packaging)"/>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <span t-esc="unit_measure"/>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <t t-if="dlc_ddm">-->
+<!--                  <t t-esc="dlc_ddm"/>-->
+<!--                  Qty:-->
+<!--                  <t t-esc="int(qty_packaging)"/>-->
+<!--                </t>-->
+<!--              </td>-->
+<!--              <td name="td_weight" class="text-right">-->
+<!--                <span t-esc="'%.2f' % weight"/>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->

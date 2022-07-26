@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
   <template id="report_picking" inherit_id="stock.report_picking">
+
+    <xpath expr="//p[@t-field='o.scheduled_date']" position="replace">
+      <t t-set="scheduled_date" t-value="o.scheduled_date.strftime('%d/%m/%Y')"/>
+      <p t-esc="scheduled_date"/>
+    </xpath>
+
     <xpath expr="//th[@name='th_product']/.." position="replace">
       <tr>
         <th name="th_product">
           <strong>Product</strong>
         </th>
-        <th>
-          <strong>Packaging Quantity</strong>
+<!--        <th>-->
+<!--          <strong>Quantity</strong>-->
+<!--        </th>-->
+        <th name="th_pack">
+          <strong>Reserved Qty</strong>
         </th>
         <th name="th_from" t-if="o.picking_type_id.code != 'incoming'" align="left" groups="stock.group_stock_multi_locations">
           <strong>From</strong>
@@ -27,8 +36,19 @@
         <th name="th_weight">
           <strong>Weight</strong>
         </th>
+
       </tr>
     </xpath>
+
+
+<!--    <xpath expr="//t[@t-foreach='move.move_line_ids.sorted(key=lambda ml: ml.location_id.id)']" position="attributes">-->
+<!--      <attribute name="t-foreach">move.move_line_ids.sorted(key=lambda ml: ml.location_id.shopfloor_picking_sequence)</attribute>-->
+<!--    </xpath>-->
+
+<!--            <td name="td_packs" class="text-right">-->
+<!--          <span t-field="ml.product_qty_by_packaging_display"/>-->
+<!--        </td>-->
+
     <xpath expr="//span[@t-field='ml.product_id.display_name']/../.." position="replace">
       <t t-set="sale_uom" t-value="ml.move_id.sale_line_id.product_uom"/>
       <t t-if="sale_uom.factor_inv != 0">
@@ -39,28 +59,35 @@
       <t t-if="sale_uom.factor_inv == 0">
         <t t-set="qty_packaging" t-value="ml.product_uom_qty" t-if="o.state != 'done'"/>
         <t t-set="qty_packaging" t-value="ml.qty_done" t-if="o.state == 'done'"/>
-        <t t-set="weight" t-value="ml.product_id.weight*qty_packaging"/>
+        <t t-set="weight" t-value="round(ml.product_id.weight*qty_packaging,2)"/>
       </t>
       <t t-set="unit_measure" t-value="sale_uom.name"/>
+<!--      <t t-set="dlc_ddm" t-value="False"/>-->
       <t t-set="dlc_ddm" t-value="False"/>
-      <t t-if="ml.move_id.sale_line_id and not ml.move_id.sale_line_id.product_packaging">
-        <t t-if="(ml.move_id.lot_ids and ml.move_id.lot_ids.expiration_date) or (ml.lot_id and ml.lot_id.expiration_date)">
-          <t t-if="ml.lot_id">
-            <t t-set="dlc_ddm" t-value="ml.lot_id.expiration_date.strftime('%d/%m/%Y')"/>
-          </t>
-          <t t-if="not ml.lot_id">
-            <t t-set="dlc_ddm" t-value="ml.move_id.lot_ids.expiration_date.strftime('%d/%m/%Y')"/>
-          </t>
-        </t>
+      <t t-if="ml.lot_id.expiration_date">
+        <t t-set="dlc_ddm" t-value="ml.lot_id.expiration_date.strftime('%d/%m/%Y')"/>
       </t>
-      <t t-if="ml.move_id.sale_line_id and ml.move_id.sale_line_id.product_packaging">
-        <t t-set="qty_packaging" t-value="ml.move_id.sale_line_id.product_packaging_qty"/>
-        <t t-set="unit_measure" t-value="ml.move_id.sale_line_id.product_packaging.name"/>
-        <t t-if="ml.move_id.lot_ids and ml.move_id.lot_ids.expiration_date">
-          <t t-set="dlc_ddm" t-value="ml.move_id.lot_ids.expiration_date.strftime('%d/%m/%Y')"/>
-        </t>
-        <t t-set="weight" t-value="ml.move_id.sale_line_id.product_packaging.weight*ml.move_id.sale_line_id.product_packaging_qty"/>
-      </t>
+
+<!--      <t t-if="ml.move_id.sale_line_id and not ml.move_id.sale_line_id.product_packaging">-->
+<!--        <t t-if="(ml.move_id.lot_ids and ml.move_id.lot_ids.expiration_date) or (ml.lot_id and ml.lot_id.expiration_date)">-->
+<!--          <t t-if="ml.lot_id">-->
+<!--            <t t-set="dlc_ddm" t-value="ml.lot_id.expiration_date.strftime('%d/%m/%Y')"/>-->
+<!--          </t>-->
+<!--          <t t-if="not ml.lot_id">-->
+<!--            <t t-set="dlc_ddm" t-value="ml.move_id.lot_ids.expiration_date.strftime('%d/%m/%Y')"/>-->
+<!--          </t>-->
+<!--        </t>-->
+<!--      </t>-->
+
+<!--      <t t-if="ml.move_id.sale_line_id and ml.move_id.sale_line_id.product_packaging">-->
+<!--        <t t-set="qty_packaging" t-value="ml.move_id.sale_line_id.product_packaging_qty"/>-->
+<!--        <t t-set="unit_measure" t-value="ml.move_id.sale_line_id.product_packaging.name"/>-->
+<!--        <t t-if="ml.move_id.lot_ids and ml.move_id.lot_ids.expiration_date">-->
+<!--          <t t-set="dlc_ddm" t-value="ml.move_id.lot_ids.expiration_date.strftime('%d/%m/%Y')"/>-->
+<!--        </t>-->
+<!--        <t t-set="weight" t-value="ml.move_id.sale_line_id.product_packaging.weight*ml.move_id.sale_line_id.product_packaging_qty"/>-->
+<!--      </t>-->
+
       <tr>
         <td>
           <span t-field="ml.product_id.display_name"/>
@@ -69,7 +96,8 @@
         </td>
         <td>
           <span t-esc="int(qty_packaging)"/>
-          <span t-esc="unit_measure"/>
+          <span t-esc="unit_measure"/> -
+          <span t-field="ml.product_qty_by_packaging_display"/>
         </td>
         <td t-if="o.picking_type_id.code != 'incoming'" groups="stock.group_stock_multi_locations">
           <span t-esc="ml.location_id.name"/>
@@ -101,16 +129,18 @@
         <td name="td_dlc_ddm">
           <t t-if="dlc_ddm">
             <t t-esc="dlc_ddm"/>
-            Qty:
-            <t t-esc="int(qty_packaging)"/>
+<!--            Qty:-->
+<!--            <t t-esc="int(qty_packaging)"/>-->
           </t>
         </td>
         <td name="td_weight" class="text-right">
           <span t-esc="'%.2f' % weight"/>
+          <t t-esc="o.weight_uom_name"/>
         </td>
       </tr>
     </xpath>
   </template>
+
   <template id="report_shipping2" inherit_id="delivery.report_shipping2">
     <xpath expr="//div[@t-if='o.weight']" position="replace">
       <div class="col-auto" name="total_weight">
