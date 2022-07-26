@@ -13,7 +13,7 @@
                 <field name="shopfloor_picking_sequence"  optional="hide"/>
             </xpath>
             <xpath expr="//tree" position="attributes">
-                <attribute name="default_order">shopfloor_picking_sequence desc</attribute>
+                <attribute name="default_order">shopfloor_picking_sequence</attribute>
             </xpath>
         </field>
     </record>
