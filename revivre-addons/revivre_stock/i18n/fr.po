@@ -1,0 +1,167 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* revivre_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-26 14:18+0000\n"
+"PO-Revision-Date: 2022-07-26 14:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "** Fresh product to be stored between 0° and 4°"
+msgstr "** Produit frais à conserver entre 0° et 4°"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid ""
+"<span>All items couldn't be shipped, the following items will be shipped as "
+"soon as they become available.</span>"
+msgstr "<span>Tous les éléments n'ont pas pu être expédiés, le reliquat sera expédié"
+" dès qu'il sera disponible.</span>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "<strong>Customer Reference:</strong>"
+msgstr "<strong>Référence client:</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "<strong>DLC/DDM</strong>"
+msgstr ""
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "<strong>Done packs</strong>"
+msgstr "<strong>Pack livré(s)</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "<strong>From</strong>"
+msgstr "<strong>De</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "<strong>Lot/Serial Number</strong>"
+msgstr "<strong>Lot/Numéro de Série</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "<strong>Order:</strong>"
+msgstr "<strong>Commande:</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "<strong>Product Barcode</strong>"
+msgstr "<strong>Code-barres Article</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "<strong>Product</strong>"
+msgstr "<strong>Code-barres</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "<strong>Quantity</strong>"
+msgstr "<strong>Quantité</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "<strong>Reserved Qty</strong>"
+msgstr "<strong>Quantité reservée</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "<strong>Shipping Date:</strong>"
+msgstr "<strong>Date d'expédition:</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "<strong>Signature</strong>"
+msgstr ""
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "<strong>To</strong>"
+msgstr "<strong>À</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_shipping2
+msgid "<strong>Weight:</strong>"
+msgstr "<strong>Poids:</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "<strong>Weight</strong>"
+msgstr "<strong>Poids</strong>"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_picking
+msgid "Barcode"
+msgstr "Code-barres"
+
+#. module: revivre_stock
+#: model:ir.model.fields,field_description:revivre_stock.field_stock_move_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "Expiration date"
+msgstr "Date d'expiration"
+
+#. module: revivre_stock
+#: model:ir.model.fields,field_description:revivre_stock.field_stock_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: revivre_stock
+#: model:ir.model.fields,field_description:revivre_stock.field_stock_move_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.report_delivery_document
+msgid "Lot/Serial Number"
+msgstr "Numéro de série"
+
+#. module: revivre_stock
+#: model:ir.model,name:revivre_stock.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "Mouvements d'article (Ligne de mouvement de stock)"
+
+#. module: revivre_stock
+#: model:ir.model.fields,field_description:revivre_stock.field_stock_move_line__qty_done_packs
+msgid "Qty Done Packs"
+msgstr "Pack livré(s)"
+
+#. module: revivre_stock
+#: model_terms:ir.ui.view,arch_db:revivre_stock.view_stock_move_line_detailed_operation_tree_revivre
+msgid "Reserved Packs"
+msgstr "Pack réservé(s)"
+
+#. module: revivre_stock
+#: model:ir.model.fields,field_description:revivre_stock.field_stock_move_line__shopfloor_picking_sequence
+msgid "Shopfloor Picking Sequence"
+msgstr "Sequence Shopfloor"
+
+#. module: revivre_stock
+#: model:ir.model.fields,help:revivre_stock.field_stock_move_line__shopfloor_picking_sequence
+msgid ""
+"The picking done in Shopfloor scenarios will respect this order. The "
+"sequence is a char so it can be composed of fields such as 'corridor-rack-"
+"side-level'. Pay attention to the padding ('09' is before '19', '9' is not)."
+" It is recommended to use an Export then an Import to populate this field "
+"using a spreadsheet."
+msgstr ""

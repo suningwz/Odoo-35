@@ -31,7 +31,7 @@ class StockMoveLine(models.Model):
         aggregated_move_lines = super()._get_aggregated_product_quantities(**kwargs)
         for v in aggregated_move_lines.values():
             v['qty_done_packs'] = self.get_qty_done_packs(product_id=v['product'], qty=v['qty_done'])
-            v['weight'] = v['qty_done'] * v['product'].weight
+            v['weight'] = round(v['qty_done'] * v['product'].weight, 2)
             v['weight_uom_id'] = v['product'].weight_uom_id
         print(aggregated_move_lines)
         return aggregated_move_lines
