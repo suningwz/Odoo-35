@@ -86,6 +86,7 @@
                                 </t>
                                 <th name="th_sml_quantity" class="text-center"><strong>Quantity</strong></th>
                                 <th name="th_sml_packs" class="text-center"><strong>Done packs</strong></th>
+                                <th name="th_sml_weight" class="text-center"><strong>Weight</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -217,6 +218,23 @@
             <td class="text-center" name="move_line_qty_done_packs">
                  <span t-field="move_line.qty_done_packs"/>
             </td>
+            <t t-set="weight" t-value="move_line.product_id.weight*move_line.qty_done"/>
+            <t t-set="weight_uom" t-value="move_line.product_id.weight_uom_id.name"/>
+            <td class="text-center" name="move_line_weight">
+                <t t-esc="weight"/>
+                <t t-esc="weight_uom"/>
+            </td>
+        </xpath>
+    </template>
+
+    <template
+        id="report_delivery_aggregated_moveline"
+        inherit_id="stock.stock_report_delivery_aggregated_move_lines"
+    >
+        <xpath expr="//td[@name='move_line_aggregated_qty_done']" position="after">
+            <td><span t-esc="aggregated_lines[line]['qty_done_packs']" /></td>
+            <td><span t-esc="aggregated_lines[line]['weight']"/>
+                <span t-esc="aggregated_lines[line]['weight_uom_id'].name"/></td>
         </xpath>
     </template>
 
