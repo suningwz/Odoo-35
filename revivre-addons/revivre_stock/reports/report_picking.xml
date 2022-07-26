@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
   <template id="report_picking" inherit_id="stock.report_picking">
+
+    <xpath expr="//p[@t-field='o.scheduled_date']" position="replace">
+      <t t-set="scheduled_date" t-value="o.scheduled_date.strftime('%d/%m/%Y')"/>
+      <p t-esc="scheduled_date"/>
+    </xpath>
+
     <xpath expr="//th[@name='th_product']/.." position="replace">
       <tr>
         <th name="th_product">
