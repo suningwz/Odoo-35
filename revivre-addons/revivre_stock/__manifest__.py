@@ -13,7 +13,7 @@
     ],
     'data': [
         'views/stock_move_line.xml',
-        # 'reports/report_deliveryslip.xml',
+        'reports/report_deliveryslip.xml',
         'reports/report_picking.xml',
     ],
     'installable': True,
