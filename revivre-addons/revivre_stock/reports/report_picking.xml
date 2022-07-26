@@ -129,6 +129,7 @@
         </td>
         <td name="td_weight" class="text-right">
           <span t-esc="'%.2f' % weight"/>
+          <t t-esc="o.weight_uom_name"/>
         </td>
       </tr>
     </xpath>
