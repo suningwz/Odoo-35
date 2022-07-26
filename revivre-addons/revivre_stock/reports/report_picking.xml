@@ -54,7 +54,7 @@
       <t t-if="sale_uom.factor_inv != 0">
         <t t-set="qty_packaging" t-value="ml.product_uom_qty/sale_uom.factor_inv" t-if="o.state != 'done'"/>
         <t t-set="qty_packaging" t-value="ml.qty_done/sale_uom.factor_inv" t-if="o.state == 'done'"/>
-        <t t-set="weight" t-value="ml.product_id.weight*qty_packaging*sale_uom.factor_inv"/>
+        <t t-set="weight" t-value="round(ml.product_id.weight*qty_packaging*sale_uom.factor_inv,2)"/>
       </t>
       <t t-if="sale_uom.factor_inv == 0">
         <t t-set="qty_packaging" t-value="ml.product_uom_qty" t-if="o.state != 'done'"/>
