@@ -11,10 +11,12 @@ class ProductTemplate(models.Model):
         expiring_lot = False
         if field_to_check == 'use_date':
             expiring_lot = self.env['stock.production.lot'].search([('product_id', 'in', product_variant_ids.ids),
+                                                                    ('product_qty', '>', 0.0),
                                                                     ('use_date', '>=', fields.Datetime.now())],
                                                                    order='use_date asc', limit=1)
         elif field_to_check == 'expiration_date':
             expiring_lot = self.env['stock.production.lot'].search([('product_id', 'in', product_variant_ids.ids),
+                                                                    ('product_qty', '>', 0.0),
                                                                     ('expiration_date', '>=', fields.Datetime.now())],
                                                                    order='expiration_date asc', limit=1)
 
