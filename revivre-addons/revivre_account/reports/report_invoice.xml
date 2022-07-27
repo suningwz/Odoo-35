@@ -81,6 +81,7 @@
 <!--          <t t-set="weight" t-value="line.sale_line_ids.product_packaging.weight*line.sale_line_ids.product_packaging_qty"/>-->
 <!--        </t>-->
         <span t-esc="'%.2f' % weight"/>
+        <t t-esc="line.product_id.weight_uom_id.name"/>
       </td>
     </xpath>
 
