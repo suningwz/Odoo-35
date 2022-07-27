@@ -1,0 +1,81 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* revivre_account
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:41+0000\n"
+"PO-Revision-Date: 2022-07-27 20:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: revivre_account
+#: model_terms:ir.ui.view,arch_db:revivre_account.report_invoice_document
+msgid "<span>Packaging Quantity</span>"
+msgstr "<span>Nombre de lot(s)</span>"
+
+#. module: revivre_account
+#: model_terms:ir.ui.view,arch_db:revivre_account.report_invoice_document
+msgid "<span>Weight</span>"
+msgstr "<span>Poids</span>"
+
+#. module: revivre_account
+#: model_terms:ir.ui.view,arch_db:revivre_account.report_invoice_document
+msgid "<strong>Customer Code:</strong>"
+msgstr "<strong>Numéro de client :</strong>"
+
+#. module: revivre_account
+#: model_terms:ir.ui.view,arch_db:revivre_account.report_invoice_document
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>Date de la facture :</strong>"
+
+#. module: revivre_account
+#: model_terms:ir.ui.view,arch_db:revivre_account.report_invoice_document
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>Référence:</strong>"
+
+#. module: revivre_account
+#: model_terms:ir.ui.view,arch_db:revivre_account.report_invoice_document
+msgid "<strong>Source:</strong>"
+msgstr "<strong>Origine:</strong>"
+
+#. module: revivre_account
+#: model_terms:ir.ui.view,arch_db:revivre_account.report_invoice_document
+msgid "Date Due:"
+msgstr "Date d'échéance :"
+
+#. module: revivre_account
+#: model:ir.model.fields,field_description:revivre_account.field_account_move_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: revivre_account
+#: model:ir.model.fields,field_description:revivre_account.field_account_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: revivre_account
+#: model:ir.model,name:revivre_account.model_account_move_line
+msgid "Journal Item"
+msgstr "Écriture comptable"
+
+#. module: revivre_account
+#: model:ir.model.fields,field_description:revivre_account.field_account_move_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: revivre_account
+#: model_terms:ir.ui.view,arch_db:revivre_account.report_invoice_document
+msgid "Please use the following communication for your payment :"
+msgstr "Merci de rappeler la référence suivante lors de votre paiement :"
+
+#. module: revivre_account
+#: model:ir.model.fields,field_description:revivre_account.field_account_move_line__product_qty_by_packaging_display
+msgid "Qty by packaging"
+msgstr "Packs"
