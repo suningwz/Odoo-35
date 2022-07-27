@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Revivre Sale",
-    'summary': 'Custom Sale Management',
+    'name': "Revivre Account",
+    'summary': 'Custom Account Management',
     'description': 'Custom Sale Management',
     'version': '14.0.0.0.0',
     'author': 'ArkeUp SAS',
     'website': 'https://arkeup.com',
     'depends': [
         'sale',
+        'account',
         'product',
         'revivre_base',
+        'stock_packaging_calculator',
     ],
     'data': [
         # data
@@ -17,7 +19,8 @@
         # views
         # wizard
         # reports
-        'reports/sale_report_templates.xml',
+        'views/account_move_line.xml',
+        'reports/report_invoice.xml',
     ],
     'installable': True,
     'application': False,
