@@ -37,11 +37,19 @@
     </xpath>
 
 
-<!--    <xpath expr="//th[@name='th_quantity']" position="replace">-->
-<!--      <th name="th_quantity" class="text-right">-->
-<!--        <span>Packaging Quantity</span>-->
-<!--      </th>-->
-<!--    </xpath>-->
+    <xpath expr="//th[@name='th_quantity']" position="replace">
+      <th name="th_quantity" class="text-right">
+        <span>Packaging Quantity</span>
+      </th>
+    </xpath>
+
+    <xpath expr="//span[@t-field='line.quantity']/.." position="replace">
+      <td>
+          <span t-field="line.product_qty_by_packaging_display"/> -
+          <span t-field="line.quantity"/>
+          <span t-field="line.product_uom_id"  groups="uom.group_uom"/>
+      </td>
+    </xpath>
 
 <!--    <xpath expr="//span[@t-field='line.quantity']/.." position="replace">-->
 <!--      <td class="text-right">-->

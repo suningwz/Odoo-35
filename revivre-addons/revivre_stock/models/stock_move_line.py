@@ -10,22 +10,27 @@ class StockMoveLine(models.Model):
 
     @api.depends("qty_done")
     def _compute_qty_done_packs(self):
-        print('_compute_qty_done_packs', self)
         for rec in self: #TODO factorisation with get_qty_done_packs
-            value = rec.move_id.product_id.product_qty_by_packaging_as_str(
-                rec.qty_done,
+            if rec.product_id:
+                value = rec.move_id.product_id.product_qty_by_packaging_as_str(
+                    rec.qty_done,
+                    include_total_units=False,
+                    only_packaging=False,
+                )
+                rec.qty_done_packs = value
+            else:
+                rec.qty_done_packs = ""
+
+    def get_qty_done_packs(self, product_id, qty):
+        if product_id:
+            value = product_id.product_qty_by_packaging_as_str(
+                qty,
                 include_total_units=False,
                 only_packaging=False,
             )
-            rec.qty_done_packs = value
-
-    def get_qty_done_packs(self, product_id, qty):
-        value = product_id.product_qty_by_packaging_as_str(
-            qty,
-            include_total_units=False,
-            only_packaging=False,
-        )
-        return value
+            return value
+        else:
+            return ""
 
     def _get_aggregated_product_quantities(self, **kwargs):
         aggregated_move_lines = super()._get_aggregated_product_quantities(**kwargs)
