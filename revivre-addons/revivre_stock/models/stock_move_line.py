@@ -8,11 +8,11 @@ class StockMoveLine(models.Model):
     shopfloor_picking_sequence = fields.Char(related="location_id.shopfloor_picking_sequence")
     qty_done_packs = fields.Char(compute='_compute_qty_done_packs')
 
-    @api.depends("qty_done")
+    @api.depends("qty_done", "product_id", )
     def _compute_qty_done_packs(self):
         for rec in self: #TODO factorisation with get_qty_done_packs
             if rec.product_id:
-                value = rec.move_id.product_id.product_qty_by_packaging_as_str(
+                value = rec.product_id.product_qty_by_packaging_as_str(
                     rec.qty_done,
                     include_total_units=False,
                     only_packaging=False,

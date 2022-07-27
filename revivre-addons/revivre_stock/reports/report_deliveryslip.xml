@@ -39,7 +39,7 @@
             <strong>Weight:</strong>
             <t t-set="total_weight" t-value="0"/>
             <t t-foreach="o.move_lines.filtered(lambda x: x.product_uom_qty)" t-as="ml">
-              <t t-set="total_weight" t-value="total_weight+(ml.product_uom_qty*ml.product_id.weight)"/>
+              <t t-set="total_weight" t-value="round(total_weight+(ml.product_uom_qty*ml.product_id.weight,2))"/>
             </t>
             <p t-esc="'%.2f' % total_weight"/>
           </div>
@@ -218,7 +218,7 @@
             <td class="text-center" name="move_line_qty_done_packs">
                  <span t-field="move_line.qty_done_packs"/>
             </td>
-            <t t-set="weight" t-value="move_line.product_id.weight*move_line.qty_done"/>
+            <t t-set="weight" t-value="round(move_line.product_id.weight*move_line.qty_done,2)"/>
             <t t-set="weight_uom" t-value="move_line.product_id.weight_uom_id.name"/>
             <td class="text-center" name="move_line_weight">
                 <t t-esc="weight"/>
