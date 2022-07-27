@@ -10,7 +10,6 @@ class StockMoveLine(models.Model):
 
     @api.depends("qty_done")
     def _compute_qty_done_packs(self):
-        print('_compute_qty_done_packs', self)
         for rec in self: #TODO factorisation with get_qty_done_packs
             value = rec.move_id.product_id.product_qty_by_packaging_as_str(
                 rec.qty_done,
