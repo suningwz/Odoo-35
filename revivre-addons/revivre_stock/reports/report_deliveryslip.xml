@@ -39,7 +39,7 @@
             <strong>Weight:</strong>
             <t t-set="total_weight" t-value="0"/>
             <t t-foreach="o.move_lines.filtered(lambda x: x.product_uom_qty)" t-as="ml">
-              <t t-set="total_weight" t-value="round(total_weight+(ml.product_uom_qty*ml.product_id.weigh),2)"/>
+              <t t-set="total_weight" t-value="round(total_weight+(ml.product_uom_qty*ml.product_id.weight),2)"/>
             </t>
             <p t-esc="'%.2f' % total_weight"/>
           </div>
