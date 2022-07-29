@@ -13,7 +13,7 @@
     'data': [
         # data
         # security
-        'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         # views
         'views/res_company_views.xml',
         # wizard

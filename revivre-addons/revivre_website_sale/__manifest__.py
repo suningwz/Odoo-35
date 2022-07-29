@@ -14,6 +14,7 @@
     'data': [
         # data
         'data/data.xml',
+        'security/ir.model.access.csv',
         # security
         # views
         'views/templates.xml',
