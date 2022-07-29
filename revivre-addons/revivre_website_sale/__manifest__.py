@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         # security
         # views
+        'views/sale_order.xml',
         'views/templates.xml',
         # wizard
         # reports

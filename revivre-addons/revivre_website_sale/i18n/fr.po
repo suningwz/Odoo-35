@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-10 23:22+0000\n"
-"PO-Revision-Date: 2022-07-10 23:22+0000\n"
+"POT-Creation-Date: 2022-07-29 12:27+0000\n"
+"PO-Revision-Date: 2022-07-29 12:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.extra_info_revivre
+msgid "<span class=\"s_website_form_label_content\">Expected date</span>"
+msgstr "<span class=\"s_website_form_label_content\">Date de livraison souhaitée</span>"
 
 #. module: revivre_website_sale
 #: model_terms:ir.ui.view,arch_db:revivre_website_sale.product_expiration_date
@@ -38,6 +43,11 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: revivre_website_sale
+#: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order__expected_customer_date
+msgid "Expected Customer Date"
+msgstr "Date de livraison client souhaitée"
+
+#. module: revivre_website_sale
 #: model:ir.model.fields,field_description:revivre_website_sale.field_product_template__id
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order__id
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order_line__id
@@ -50,6 +60,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:revivre_website_sale.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
+
+#. module: revivre_website_sale
+#: model_terms:ir.ui.view,arch_db:revivre_website_sale.product_expiration_date
+msgid "Not available"
+msgstr "Non disponible"
 
 #. module: revivre_website_sale
 #: model_terms:ir.ui.view,arch_db:revivre_website_sale.brand_promotion_message
@@ -100,31 +115,3 @@ msgstr "Sélectionnez votre conditionnement"
 #: model_terms:ir.ui.view,arch_db:revivre_website_sale.wk_cart_inherit
 msgid "Total"
 msgstr ""
-
-#. module: revivre_website_sale
-#: model_terms:ir.ui.view,arch_db:website_sale.payment
-msgid "Pay Now"
-msgstr "Confirmer votre commande"
-
-#. module: revivre_website_sale
-#: model_terms:ir.ui.view,arch_db:website_sale.cart
-msgid ""
-"<span class=\"\">Process Checkout</span>\n"
-"                                        <span class=\"fa fa-chevron-right\"/>"
-msgstr ""
-"<span class=\"\">Vos adresses</span>\n"
-"                                        <span class=\"fa fa-chevron-right\"/>"
-
-#. module: revivre_website_sale
-#: model_terms:ir.ui.view,arch_db:website_sale.cart
-msgid ""
-"<span class=\"\">Process Checkout</span>\n"
-"                                    <span class=\"fa fa-chevron-right\"/>"
-msgstr ""
-"<span class=\"\">Vos adresses</span>\n"
-"                                    <span class=\"fa fa-chevron-right\"/>"
-
-#. module: revivre_website_sale
-#: model_terms:ir.ui.view,arch_db:website_sale.short_cart_summary
-msgid "<span>Process Checkout</span>"
-msgstr "<span>Vos adresses</span>"

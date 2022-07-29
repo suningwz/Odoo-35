@@ -146,7 +146,33 @@
   <record id="purchase.portal_my_home_purchase" model="ir.ui.view">
     <field name="active">False</field>
   </record>
+
   <template id="checkout" inherit_id="website_sale.checkout">
     <xpath expr="//form[@action='/shop/address']" position="replace"/>
   </template>
+
+    <template id="extra_info_revivre" inherit_id="website_sale.extra_info">
+      <xpath expr="//div[@class='form-group col-12 s_website_form_field'][1]" position="after">
+        <div class="form-group col-12 s_website_form_field" data-type="char" data-name="Field">
+          <div class="row s_col_no_resize s_col_no_bgcolor">
+            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="sale1">
+                <span class="s_website_form_label_content">Expected date</span>
+            </label>
+            <div class="col-sm">
+              <div class="input-group date" id="exp_closing_div" data-target-input="nearest">
+                  <t t-set='date_formatted'><t t-options='{"widget": "date"}'/></t>
+
+                <input type="date" name="expected_customer_date"
+                       t-att-value="expected_customer_date"
+                       id="expected_customer_date"
+                       class="form-control form-control-sm"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </xpath>
+  </template>
+
 </odoo>
