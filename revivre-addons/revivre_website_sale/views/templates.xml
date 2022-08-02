@@ -23,14 +23,18 @@
         <xpath expr="//t[@t-call='website_sale.product_price']" position="before">
             <div t-if="product.use_expiration_date">
                 <span t-if="product.expiration_time != 0">
-                    <t t-set="expiring_lot" t-value="product.get_expiring_lot(product_variant, 'expiration_date')"/>
-                    Best before:
-                    <span t-if="expiring_lot">
-                        <t style="float:right;" t-esc="expiring_lot.expiration_date" t-options='{"widget": "date"}'/>
-                    </span>
-                    <span t-if="not expiring_lot">
-                        <t style="float:right;"/>Not available
-                    </span>
+                    <div class="alert alert-primary" role="alert">
+                        <t t-set="expiring_lot" t-value="product.get_expiring_lot(product_variant, 'expiration_date')"/>
+                        Best before:
+                        <span t-if="expiring_lot">
+                            <t style="float:right;" t-esc="expiring_lot.expiration_date" t-options='{"widget": "date"}'/>
+                        </span>
+                    </div>
+                        <span t-if="not expiring_lot">
+                            <div class="alert alert-danger" role="alert">
+                                <t style="float:right;"/>Not available
+                            </div>
+                        </span>
                 </span>
             </div>
         </xpath>
@@ -51,16 +55,42 @@
         <xpath expr="//b[hasclass('oe_price')]" position="replace"/>
         <xpath expr="//div[hasclass('wk_packaging')]" position="before">
             <t t-if="product.packaging_ids">
-                <t t-foreach="product.packaging_ids" t-as="package">
-                    <b style="white-space: nowrap;" t-esc="package.sale_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                    /
-                    <b t-esc="package.name"/>
-                    <br/>
-                </t>
+
+                <table class="table table-sm">
+                    <thead>
+                     <tr>
+                         <th scope="col">Package</th>
+                         <th scope="col">Price</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="product.packaging_ids" t-as="package">
+                            <tr class="table_price_note_row">
+                                <td scope="row"><t t-esc="package.name"/></td>
+                                <td scope="row"><t t-esc="package.sale_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/></td>
+                            </tr>
+                        </t>
+                        <tr class="table_price_note_row">
+                            <td scope="row"><t t-esc="product.uom_name"/></td>
+                            <td scope="row"><t t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/></td>
+                        </tr>
+
+                    </tbody>
+                </table>
             </t>
-            <t class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-            /
-            <t t-esc="product.uom_name"/>
+
+
+
+<!--                <t t-foreach="product.packaging_ids" t-as="package">-->
+<!--                    <b style="white-space: nowrap;" t-esc="package.sale_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>-->
+<!--                    /-->
+<!--                    <b t-esc="package.name"/>-->
+<!--                    <br/>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--            <t class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>-->
+<!--            /-->
+<!--            <t t-esc="product.uom_name"/>-->
         </xpath>
         <xpath expr="//div[hasclass('wk_packaging')]" position="replace"/>
     </template>

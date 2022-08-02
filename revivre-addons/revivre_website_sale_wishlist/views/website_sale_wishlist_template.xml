@@ -17,5 +17,9 @@
               </select>
             </td>
         </xpath>
+        <xpath expr='//td[4]' position='replace'>
+<!--        <xpath expr='//td[4]' position='attributes'>-->
+<!--            <attribute name="invisible">1</attribute>-->
+        </xpath>
     </template>
 </odoo>
