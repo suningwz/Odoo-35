@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Wishlist assets frontend revivre">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/revivre_website_sale_wishlist/static/src/js/website_sale_wishlist.js"></script>
+        </xpath>
+    </template>
+
+    <template id="product_wishlist" inherit_id='website_sale_wishlist.product_wishlist'>
+        <xpath expr='//td[@class="text-left"]' position='after'>
+            <td>
+              <select class="form-control package_selector mb-3" name="packaging_name" id="packaging_select">
+                  <t t-foreach="wish.product_id.sudo().packaging_ids.sorted(key=lambda x: x.name)" t-as="package_id">
+                      <option t-att-pack-id="package_id.id" t-esc="package_id.name" t-att-data-pack-qty='package_id.qty'/>
+                  </t>
+              </select>
+            </td>
+        </xpath>
+    </template>
+</odoo>
