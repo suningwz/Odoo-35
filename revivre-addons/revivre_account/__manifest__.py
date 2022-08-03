@@ -10,6 +10,7 @@
         'sale',
         'account',
         'product',
+        'sale_stock',
         'revivre_base',
         'stock_packaging_calculator',
     ],

@@ -30,11 +30,11 @@
                             <t style="float:right;" t-esc="expiring_lot.expiration_date" t-options='{"widget": "date"}'/>
                         </span>
                     </div>
-                        <span t-if="not expiring_lot">
-                            <div class="alert alert-danger" role="alert">
-                                <t style="float:right;"/>Not available
-                            </div>
-                        </span>
+                    <span t-if="not expiring_lot">
+                        <div class="alert alert-danger" role="alert">
+                            <t style="float:right;"/>Not available
+                        </div>
+                    </span>
                 </span>
             </div>
         </xpath>
@@ -78,19 +78,6 @@
                     </tbody>
                 </table>
             </t>
-
-
-
-<!--                <t t-foreach="product.packaging_ids" t-as="package">-->
-<!--                    <b style="white-space: nowrap;" t-esc="package.sale_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>-->
-<!--                    /-->
-<!--                    <b t-esc="package.name"/>-->
-<!--                    <br/>-->
-<!--                </t>-->
-<!--            </t>-->
-<!--            <t class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>-->
-<!--            /-->
-<!--            <t t-esc="product.uom_name"/>-->
         </xpath>
         <xpath expr="//div[hasclass('wk_packaging')]" position="replace"/>
     </template>
