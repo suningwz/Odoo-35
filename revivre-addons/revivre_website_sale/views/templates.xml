@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
   <template id="website_sale.header_cart_link" name="Header Cart Link">
     <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
     <t t-set="show_cart" t-value="true"/>
@@ -34,6 +35,7 @@
         </div>
       </span>
     </xpath>
+
     <xpath expr="//a[@id='add_to_cart']" position="before">
       <div class='wk_packaging'>
         <t t-if="product_variant.sudo().packaging_ids">
@@ -44,6 +46,8 @@
             </t>
           </select>
         </t>
+      </div>
+    </xpath>
 
     </template>
     <template id="product_custom_text" inherit_id="website_sale.product_custom_text" active="True" customize_show="True" name="Terms and Conditions">
