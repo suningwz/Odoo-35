@@ -7,7 +7,7 @@ from odoo import fields, models, api
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    def get_expiring_lot(self, product_variant_ids, field_to_check):
+    def (self, product_variant_ids, field_to_check):
         expiring_lot = False
         if field_to_check == 'use_date':
             expiring_lot_ids = self.env['stock.production.lot'].sudo().search([('product_id', 'in', product_variant_ids.ids),

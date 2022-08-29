@@ -21,7 +21,7 @@
     </template>
     <template id="product_expiration_date" inherit_id="website_sale.product">
         <xpath expr="//t[@t-call='website_sale.product_price']" position="before">
-            <t t-set="tracking" t-value="product.tracking in ['serial', 'lot'] and product.use_expiration_date and  product.expiration_time != 0"/>
+            <t t-set="tracking" t-value="product.tracking in ['serial', 'lot']"/>
             <span t-if="tracking">
                 <t t-set="expiring_lot" t-value="product.get_expiring_lot(product_variant, 'expiration_date')"/>
                 <span t-if="expiring_lot">
