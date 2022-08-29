@@ -17,6 +17,7 @@
         # views
         'views/product_template_views.xml',
         'views/purchase_order_views.xml',
+        'reports/purchase_report_templates.xml',
         # wizard
         # reports
     ],
