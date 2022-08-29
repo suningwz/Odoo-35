@@ -248,7 +248,6 @@
             <span class="o_footer_copyright_name mr-2">Copyright &amp;copy;
                 <span t-field="res_company.name" itemprop="name">Company name</span>
             </span>
->>>>>>> staging2201
 
     </xpath>
   </template>
